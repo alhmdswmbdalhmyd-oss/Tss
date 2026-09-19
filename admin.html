@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Admin - لوحة التحكم</title>
+
+  <link rel="stylesheet" href="admin.css">
+
+</head>
+
+
+<body>
+
+
+<!-- LOGIN -->
+
+<section id="loginScreen" class="login-screen">
+
+  <div class="login-box">
+
+    <div class="lock">
+      🔐
+    </div>
+
+    <h1>
+      لوحة الإدارة
+    </h1>
+
+    <p>
+      الدخول للمسؤول فقط
+    </p>
+
+    <input
+      type="password"
+      id="adminPassword"
+      placeholder="كلمة المرور"
+    >
+
+    <button onclick="login()">
+      دخول
+    </button>
+
+    <div id="loginError"></div>
+
+  </div>
+
+</section>
+
+
+
+<!-- DASHBOARD -->
+
+<section id="dashboard" class="hidden">
+
+  <header class="topbar">
+
+    <div>
+
+      <h1>
+        لوحة التحكم
+      </h1>
+
+      <p>
+        إدارة منصة التصويت
+      </p>
+
+    </div>
+
+
+    <button
+      class="logout"
+      onclick="logout()"
+    >
+      تسجيل خروج
+    </button>
+
+  </header>
+
+
+
+  <main class="container">
+
+
+    <!-- STATS -->
+
+    <section class="stats">
+
+      <div class="stat">
+
+        <span>👤</span>
+
+        <strong id="totalCandidates">
+          0
+        </strong>
+
+        <small>
+          المرشحون
+        </small>
+
+      </div>
+
+
+      <div class="stat">
+
+        <span>🗳️</span>
+
+        <strong id="totalVotes">
+          0
+        </strong>
+
+        <small>
+          إجمالي الأصوات
+        </small>
+
+      </div>
+
+
+    </section>
+
+
+
+    <!-- CONTROL -->
+
+    <section class="panel">
+
+      <h2>
+        ⏰ التحكم بوقت التصويت
+      </h2>
+
+
+      <label>
+        وقت البداية
+      </label>
+
+      <input
+        type="datetime-local"
+        id="startTime"
+      >
+
+
+      <label>
+        وقت النهاية
+      </label>
+
+      <input
+        type="datetime-local"
+        id="endTime"
+      >
+
+
+      <div class="control-buttons">
+
+        <button
+          class="save-btn"
+          onclick="saveVotingTime()"
+        >
+          💾 حفظ المواعيد
+        </button>
+
+        <button
+          class="open-btn"
+          onclick="openVotingNow()"
+        >
+          🟢 فتح الآن
+        </button>
+
+        <button
+          class="close-btn"
+          onclick="closeVotingNow()"
+        >
+          🔴 إغلاق الآن
+        </button>
+
+        <button
+          class="auto-btn"
+          onclick="automaticMode()"
+        >
+          ⚙️ الوضع التلقائي
+        </button>
+
+      </div>
+
+
+      <div
+        id="currentStatus"
+        class="current-status"
+      >
+      </div>
+
+    </section>
+
+
+
+    <!-- ADD CANDIDATE -->
+
+    <section class="panel">
+
+      <h2>
+        ➕ إضافة مرشح
+      </h2>
+
+
+      <input
+        type="text"
+        id="candidateName"
+        placeholder="اسم المرشح"
+      >
+
+
+      <input
+        type="text"
+        id="candidateImage"
+        placeholder="رابط صورة المرشح"
+      >
+
+
+      <textarea
+        id="candidateDescription"
+        placeholder="وصف قصير للمرشح"
+      ></textarea>
+
+
+      <button
+        class="save-btn full"
+        onclick="addCandidate()"
+      >
+        إضافة المرشح
+      </button>
+
+    </section>
+
+
+
+    <!-- CANDIDATES -->
+
+    <section class="panel">
+
+      <div class="panel-title">
+
+        <h2>
+          📋 المرشحون
+        </h2>
+
+        <span id="candidateCount">
+          0
+        </span>
+
+      </div>
+
+
+      <div id="candidateList"></div>
+
+    </section>
+
+
+  </main>
+
+</section>
+
+
+<script src="admin.js"></script>
+
+</body>
+</html>
