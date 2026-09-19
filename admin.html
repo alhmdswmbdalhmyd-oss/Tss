@@ -1,272 +1,742 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>لوحة الإدارة</title>
 
-  <meta charset="UTF-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+body{
+font-family:Arial,sans-serif;
+background:#090912;
+color:#fff;
+min-height:100vh
+}
 
-  <title>Admin - لوحة التحكم</title>
+button,input,textarea{font-family:inherit}
 
-  <link rel="stylesheet" href="admin.css">
+.login-screen{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px
+}
 
+.login-box{
+width:100%;
+max-width:400px;
+background:#151522;
+border:1px solid #29293d;
+border-radius:18px;
+padding:30px;
+text-align:center
+}
+
+.login-box h1{margin-bottom:25px}
+
+.login-box input,
+.panel input,
+.panel textarea{
+width:100%;
+padding:13px;
+margin-top:8px;
+margin-bottom:15px;
+border:1px solid #34344c;
+border-radius:10px;
+background:#0f0f19;
+color:#fff;
+outline:none
+}
+
+.login-box button,
+.buttons button,
+.add-btn{
+border:0;
+padding:12px 18px;
+border-radius:10px;
+background:#6c4cff;
+color:#fff;
+cursor:pointer
+}
+
+.login-box button{width:100%}
+
+#loginMessage{
+color:#ff6577;
+margin-top:15px
+}
+
+.dashboard{
+width:94%;
+max-width:1100px;
+margin:auto;
+padding-bottom:50px
+}
+
+.admin-header{
+min-height:80px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+border-bottom:1px solid #29293d;
+margin-bottom:25px
+}
+
+.logout-btn{
+border:0;
+padding:10px 15px;
+border-radius:9px;
+background:#3d1820;
+color:#ff7888;
+cursor:pointer
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+margin-bottom:20px
+}
+
+.stat-box{
+background:#151522;
+border:1px solid #29293d;
+border-radius:15px;
+padding:20px
+}
+
+.stat-box span{
+display:block;
+color:#aaaabc;
+margin-bottom:10px
+}
+
+.stat-box strong{font-size:28px}
+
+.panel{
+background:#151522;
+border:1px solid #29293d;
+border-radius:16px;
+padding:22px;
+margin-bottom:20px
+}
+
+.panel h2{margin-bottom:20px}
+
+.panel label{
+display:block;
+color:#aaaabc;
+margin-top:10px
+}
+
+.panel textarea{
+min-height:100px;
+resize:vertical
+}
+
+.buttons{
+display:flex;
+flex-wrap:wrap;
+gap:10px
+}
+
+.image-upload{
+display:block;
+text-align:center;
+padding:18px;
+margin:10px 0 15px;
+border:1px dashed #6c4cff;
+border-radius:12px;
+color:#c5baff!important;
+cursor:pointer
+}
+
+.image-upload input{display:none}
+
+.image-preview{
+display:block;
+width:150px;
+height:150px;
+object-fit:cover;
+border-radius:12px;
+margin:10px auto 20px
+}
+
+.add-btn{
+width:100%;
+font-size:16px
+}
+
+.candidate-admin{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:20px;
+padding:18px;
+margin-bottom:12px;
+background:#0f0f19;
+border:1px solid #29293d;
+border-radius:14px
+}
+
+.candidate-info{
+display:flex;
+align-items:center;
+gap:15px;
+min-width:0
+}
+
+.candidate-info img{
+width:80px;
+height:80px;
+object-fit:cover;
+border-radius:12px
+}
+
+.candidate-info h3{margin-bottom:7px}
+
+.candidate-info p{
+color:#aaaabc;
+margin-bottom:8px
+}
+
+.vote-number{
+display:inline-block;
+padding:9px 14px;
+background:#21194b;
+color:#b9aaff;
+border-radius:8px;
+font-weight:bold;
+font-size:17px
+}
+
+.candidate-actions{
+display:flex;
+gap:8px;
+flex-shrink:0
+}
+
+.reset-btn,
+.delete-btn{
+border:0;
+padding:9px 12px;
+border-radius:8px;
+cursor:pointer
+}
+
+.reset-btn{
+background:#403515;
+color:#ffd85c
+}
+
+.delete-btn{
+background:#3d1820;
+color:#ff7182
+}
+
+.empty-state{
+text-align:center;
+color:#aaaabc;
+padding:40px
+}
+
+@media(max-width:700px){
+
+.stats{grid-template-columns:1fr}
+
+.candidate-admin{
+flex-direction:column;
+align-items:stretch
+}
+
+.candidate-actions{
+width:100%
+}
+
+.candidate-actions button{
+flex:1
+}
+
+.admin-header{gap:10px}
+}
+</style>
 </head>
-
 
 <body>
 
+<div id="loginScreen" class="login-screen">
 
-<!-- LOGIN -->
+<div class="login-box">
 
-<section id="loginScreen" class="login-screen">
+<h1>🔐 لوحة الإدارة</h1>
 
-  <div class="login-box">
+<input
+type="password"
+id="adminPassword"
+placeholder="كلمة المرور"
+>
 
-    <div class="lock">
-      🔐
-    </div>
+<button onclick="login()">دخول</button>
 
-    <h1>
-      لوحة الإدارة
-    </h1>
+<p id="loginMessage"></p>
 
-    <p>
-      الدخول للمسؤول فقط
-    </p>
+</div>
+</div>
 
-    <input
-      type="password"
-      id="adminPassword"
-      placeholder="كلمة المرور"
-    >
 
-    <button onclick="login()">
-      دخول
-    </button>
+<div id="dashboard" class="dashboard" style="display:none">
 
-    <div id="loginError"></div>
+<header class="admin-header">
 
-  </div>
+<h1>🗳️ إدارة التصويت</h1>
+
+<button onclick="logout()" class="logout-btn">
+تسجيل خروج
+</button>
+
+</header>
+
+
+<section class="stats">
+
+<div class="stat-box">
+<span>عدد المرشحين</span>
+<strong id="totalCandidates">0</strong>
+</div>
+
+<div class="stat-box">
+<span>إجمالي الأصوات</span>
+<strong id="totalVotes">0</strong>
+</div>
+
+<div class="stat-box">
+<span>حالة التصويت</span>
+<strong id="currentStatus">مغلق</strong>
+</div>
 
 </section>
 
 
+<section class="panel">
 
-<!-- DASHBOARD -->
+<h2>⏰ التحكم بوقت التصويت</h2>
 
-<section id="dashboard" class="hidden">
+<label>وقت البداية</label>
 
-  <header class="topbar">
+<input type="datetime-local" id="startTime">
 
-    <div>
+<label>وقت النهاية</label>
 
-      <h1>
-        لوحة التحكم
-      </h1>
+<input type="datetime-local" id="endTime">
 
-      <p>
-        إدارة منصة التصويت
-      </p>
+<div class="buttons">
 
-    </div>
+<button onclick="saveVotingTime()">حفظ الوقت</button>
+<button onclick="openVotingNow()">فتح الآن</button>
+<button onclick="closeVotingNow()">إغلاق الآن</button>
+<button onclick="automaticMode()">الوضع التلقائي</button>
 
+</div>
+</section>
 
-    <button
-      class="logout"
-      onclick="logout()"
-    >
-      تسجيل خروج
-    </button>
 
-  </header>
+<section class="panel">
 
+<h2>➕ إضافة مرشح</h2>
 
+<input
+type="text"
+id="candidateName"
+placeholder="اسم المرشح"
+>
 
-  <main class="container">
+<label class="image-upload">
 
+📷 اختيار صورة من الجهاز
 
-    <!-- STATS -->
+<input
+type="file"
+id="candidateImage"
+accept="image/*"
+onchange="previewImage(event)"
+>
 
-    <section class="stats">
+</label>
 
-      <div class="stat">
+<img
+id="imagePreview"
+class="image-preview"
+style="display:none"
+>
 
-        <span>👤</span>
+<textarea
+id="candidateDescription"
+placeholder="وصف المرشح"
+></textarea>
 
-        <strong id="totalCandidates">
-          0
-        </strong>
-
-        <small>
-          المرشحون
-        </small>
-
-      </div>
-
-
-      <div class="stat">
-
-        <span>🗳️</span>
-
-        <strong id="totalVotes">
-          0
-        </strong>
-
-        <small>
-          إجمالي الأصوات
-        </small>
-
-      </div>
-
-
-    </section>
-
-
-
-    <!-- CONTROL -->
-
-    <section class="panel">
-
-      <h2>
-        ⏰ التحكم بوقت التصويت
-      </h2>
-
-
-      <label>
-        وقت البداية
-      </label>
-
-      <input
-        type="datetime-local"
-        id="startTime"
-      >
-
-
-      <label>
-        وقت النهاية
-      </label>
-
-      <input
-        type="datetime-local"
-        id="endTime"
-      >
-
-
-      <div class="control-buttons">
-
-        <button
-          class="save-btn"
-          onclick="saveVotingTime()"
-        >
-          💾 حفظ المواعيد
-        </button>
-
-        <button
-          class="open-btn"
-          onclick="openVotingNow()"
-        >
-          🟢 فتح الآن
-        </button>
-
-        <button
-          class="close-btn"
-          onclick="closeVotingNow()"
-        >
-          🔴 إغلاق الآن
-        </button>
-
-        <button
-          class="auto-btn"
-          onclick="automaticMode()"
-        >
-          ⚙️ الوضع التلقائي
-        </button>
-
-      </div>
-
-
-      <div
-        id="currentStatus"
-        class="current-status"
-      >
-      </div>
-
-    </section>
-
-
-
-    <!-- ADD CANDIDATE -->
-
-    <section class="panel">
-
-      <h2>
-        ➕ إضافة مرشح
-      </h2>
-
-
-      <input
-        type="text"
-        id="candidateName"
-        placeholder="اسم المرشح"
-      >
-
-
-      <input
-        type="text"
-        id="candidateImage"
-        placeholder="رابط صورة المرشح"
-      >
-
-
-      <textarea
-        id="candidateDescription"
-        placeholder="وصف قصير للمرشح"
-      ></textarea>
-
-
-      <button
-        class="save-btn full"
-        onclick="addCandidate()"
-      >
-        إضافة المرشح
-      </button>
-
-    </section>
-
-
-
-    <!-- CANDIDATES -->
-
-    <section class="panel">
-
-      <div class="panel-title">
-
-        <h2>
-          📋 المرشحون
-        </h2>
-
-        <span id="candidateCount">
-          0
-        </span>
-
-      </div>
-
-
-      <div id="candidateList"></div>
-
-    </section>
-
-
-  </main>
+<button onclick="addCandidate()" class="add-btn">
+إضافة المرشح
+</button>
 
 </section>
 
 
-<script src="admin.js"></script>
+<section class="panel">
+
+<h2>👥 المرشحون وأصوات كل واحد</h2>
+
+<div id="candidateList"></div>
+
+</section>
+
+</div>
+
+
+<script>
+
+const ADMIN_PASSWORD="MNMN0505";
+
+let candidates=JSON.parse(localStorage.getItem("candidates")||"[]");
+let votes=JSON.parse(localStorage.getItem("votes")||"{}");
+let voteSettings=JSON.parse(localStorage.getItem("voteSettings")||'{"startTime":"","endTime":"","manualStatus":"auto"}');
+
+
+function login(){
+
+const password=document.getElementById("adminPassword").value;
+const message=document.getElementById("loginMessage");
+
+if(password===ADMIN_PASSWORD){
+
+sessionStorage.setItem("adminLoggedIn","true");
+
+document.getElementById("loginScreen").style.display="none";
+document.getElementById("dashboard").style.display="block";
+
+loadDashboard();
+
+}else{
+
+message.textContent="كلمة المرور غير صحيحة";
+}
+}
+
+
+function logout(){
+
+sessionStorage.removeItem("adminLoggedIn");
+location.reload();
+}
+
+
+window.onload=function(){
+
+if(sessionStorage.getItem("adminLoggedIn")==="true"){
+
+document.getElementById("loginScreen").style.display="none";
+document.getElementById("dashboard").style.display="block";
+
+loadDashboard();
+}
+};
+
+
+function loadDashboard(){
+
+document.getElementById("startTime").value=voteSettings.startTime||"";
+document.getElementById("endTime").value=voteSettings.endTime||"";
+
+renderDashboard();
+updateCurrentStatus();
+
+setInterval(updateCurrentStatus,1000);
+}
+
+
+function previewImage(event){
+
+const file=event.target.files[0];
+
+if(!file)return;
+
+const reader=new FileReader();
+
+reader.onload=function(e){
+
+const preview=document.getElementById("imagePreview");
+
+preview.src=e.target.result;
+preview.style.display="block";
+};
+
+reader.readAsDataURL(file);
+}
+
+
+function addCandidate(){
+
+const name=document.getElementById("candidateName").value.trim();
+const description=document.getElementById("candidateDescription").value.trim();
+const imageInput=document.getElementById("candidateImage");
+
+if(!name){
+
+alert("اكتب اسم المرشح");
+return;
+}
+
+if(!imageInput.files[0]){
+
+alert("اختر صورة للمرشح");
+return;
+}
+
+const reader=new FileReader();
+
+reader.onload=function(e){
+
+const candidate={
+
+id:Date.now().toString(),
+name:name,
+image:e.target.result,
+description:description,
+createdAt:new Date().toISOString()
+
+};
+
+candidates.push(candidate);
+
+// عداد مستقل لكل مرشح
+votes[candidate.id]=0;
+
+saveData();
+
+document.getElementById("candidateName").value="";
+document.getElementById("candidateDescription").value="";
+document.getElementById("candidateImage").value="";
+document.getElementById("imagePreview").style.display="none";
+
+renderDashboard();
+
+alert(`تمت إضافة ${candidate.name} بنجاح`);
+};
+
+reader.readAsDataURL(imageInput.files[0]);
+}
+
+
+function deleteCandidate(id){
+
+const candidate=candidates.find(c=>c.id===id);
+
+if(!candidate)return;
+
+if(!confirm(`هل تريد حذف ${candidate.name}؟`))return;
+
+candidates=candidates.filter(c=>c.id!==id);
+
+delete votes[id];
+
+saveData();
+renderDashboard();
+}
+
+
+function resetCandidateVotes(id){
+
+const candidate=candidates.find(c=>c.id===id);
+
+if(!candidate)return;
+
+if(!confirm(`هل تريد تصفير أصوات ${candidate.name}؟`))return;
+
+votes[id]=0;
+
+saveData();
+renderDashboard();
+}
+
+
+function renderDashboard(){
+
+const list=document.getElementById("candidateList");
+
+list.innerHTML="";
+
+let totalVotes=0;
+
+candidates.forEach(candidate=>{
+
+const candidateVotes=Number(votes[candidate.id]||0);
+
+totalVotes+=candidateVotes;
+
+const item=document.createElement("div");
+
+item.className="candidate-admin";
+
+item.innerHTML=`
+
+<div class="candidate-info">
+
+<img src="${candidate.image}" alt="${candidate.name}">
+
+<div>
+
+<h3>${candidate.name}</h3>
+
+<p>${candidate.description||"لا يوجد وصف"}</p>
+
+<div class="vote-number">
+🗳️ ${candidateVotes} صوت
+</div>
+
+</div>
+
+</div>
+
+<div class="candidate-actions">
+
+<button
+class="reset-btn"
+onclick="resetCandidateVotes('${candidate.id}')"
+>
+تصفير الأصوات
+</button>
+
+<button
+class="delete-btn"
+onclick="deleteCandidate('${candidate.id}')"
+>
+حذف
+</button>
+
+</div>
+`;
+
+list.appendChild(item);
+
+});
+
+
+if(candidates.length===0){
+
+list.innerHTML=`
+<div class="empty-state">
+لا يوجد مرشحون حتى الآن
+</div>
+`;
+}
+
+document.getElementById("totalCandidates").textContent=candidates.length;
+document.getElementById("totalVotes").textContent=totalVotes;
+}
+
+
+function saveData(){
+
+localStorage.setItem("candidates",JSON.stringify(candidates));
+localStorage.setItem("votes",JSON.stringify(votes));
+}
+
+
+function saveVotingTime(){
+
+const start=document.getElementById("startTime").value;
+const end=document.getElementById("endTime").value;
+
+if(!start||!end){
+
+alert("حدد وقت البداية والنهاية");
+return;
+}
+
+if(new Date(start)>=new Date(end)){
+
+alert("وقت النهاية يجب أن يكون بعد وقت البداية");
+return;
+}
+
+voteSettings.startTime=start;
+voteSettings.endTime=end;
+voteSettings.manualStatus="auto";
+
+saveSettings();
+updateCurrentStatus();
+
+alert("تم حفظ وقت التصويت");
+}
+
+
+function openVotingNow(){
+
+voteSettings.manualStatus="open";
+
+saveSettings();
+updateCurrentStatus();
+}
+
+
+function closeVotingNow(){
+
+voteSettings.manualStatus="closed";
+
+saveSettings();
+updateCurrentStatus();
+}
+
+
+function automaticMode(){
+
+voteSettings.manualStatus="auto";
+
+saveSettings();
+updateCurrentStatus();
+}
+
+
+function saveSettings(){
+
+localStorage.setItem(
+"voteSettings",
+JSON.stringify(voteSettings)
+);
+}
+
+
+function getVotingStatus(){
+
+if(voteSettings.manualStatus==="open")return"open";
+if(voteSettings.manualStatus==="closed")return"closed";
+
+const now=new Date();
+
+const start=voteSettings.startTime?new Date(voteSettings.startTime):null;
+const end=voteSettings.endTime?new Date(voteSettings.endTime):null;
+
+if(start&&now<start)return"waiting";
+if(end&&now>end)return"closed";
+if(start&&end)return"open";
+
+return"closed";
+}
+
+
+function updateCurrentStatus(){
+
+const status=getVotingStatus();
+const element=document.getElementById("currentStatus");
+
+if(status==="open")element.textContent="مفتوح";
+else if(status==="waiting")element.textContent="لم يبدأ";
+else element.textContent="مغلق";
+}
+
+</script>
 
 </body>
 </html>
