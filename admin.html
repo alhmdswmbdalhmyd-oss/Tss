@@ -10,36 +10,22 @@
   box-sizing:border-box;
   margin:0;
   padding:0;
-}
-
-:root{
-  --bg:#080914;
-  --panel:#111426;
-  --purple:#8b5cf6;
-  --cyan:#22d3ee;
-  --green:#22c55e;
-  --red:#ef4444;
-  --yellow:#f59e0b;
-  --text:#f8fafc;
-  --muted:#9ca3af;
-  --border:rgba(255,255,255,.09);
+  font-family:Tahoma,Arial,sans-serif;
 }
 
 body{
-  font-family:Tahoma,Arial,sans-serif;
-  background:
-    radial-gradient(circle at 10% 0%,rgba(139,92,246,.2),transparent 30%),
-    radial-gradient(circle at 90% 15%,rgba(34,211,238,.1),transparent 28%),
-    var(--bg);
-  color:var(--text);
+  background:#080b18;
+  color:#fff;
   min-height:100vh;
 }
 
-button,input,textarea,select{
+button,
+input,
+textarea{
   font-family:inherit;
 }
 
-.loginPage{
+.login{
   min-height:100vh;
   display:flex;
   align-items:center;
@@ -47,56 +33,63 @@ button,input,textarea,select{
   padding:20px;
 }
 
-.loginBox{
+.login-box{
   width:min(430px,100%);
-  padding:35px;
-  border-radius:28px;
-  background:#111426;
-  border:1px solid var(--border);
-  box-shadow:0 30px 80px rgba(0,0,0,.45);
-  text-align:center;
+  background:#11172c;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:25px;
+  padding:30px;
+  box-shadow:0 20px 70px rgba(0,0,0,.35);
 }
 
-.loginIcon{
-  width:70px;
-  height:70px;
+.login-logo{
+  width:65px;
+  height:65px;
   margin:0 auto 20px;
-  border-radius:22px;
-  display:grid;
-  place-items:center;
+  border-radius:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#7c3aed,#06b6d4);
   font-size:30px;
-  background:linear-gradient(135deg,var(--purple),var(--cyan));
+  font-weight:bold;
 }
 
-.loginBox h1{
-  font-size:28px;
+.login-box h1{
+  text-align:center;
   margin-bottom:10px;
 }
 
-.loginBox p{
-  color:var(--muted);
-  line-height:1.7;
-  margin-bottom:20px;
-}
-
-label{
-  display:block;
-  color:#d1d5db;
+.login-box p{
+  text-align:center;
+  color:#8d96ad;
   font-size:13px;
-  margin:14px 0 7px;
+  margin-bottom:25px;
 }
 
-input,textarea,select{
+.field{
+  margin-bottom:16px;
+}
+
+.field label{
+  display:block;
+  margin-bottom:8px;
+  color:#b8c0d3;
+  font-size:13px;
+}
+
+.field input,
+.field textarea{
   width:100%;
-  border:1px solid var(--border);
+  border:1px solid rgba(255,255,255,.1);
   outline:none;
-  background:#0c0f1d;
+  background:#0c1123;
   color:#fff;
-  padding:14px;
   border-radius:13px;
+  padding:13px;
 }
 
-textarea{
+.field textarea{
   resize:vertical;
   min-height:90px;
 }
@@ -105,19 +98,20 @@ textarea{
   width:100%;
   border:0;
   padding:14px;
-  margin-top:18px;
   border-radius:13px;
-  background:linear-gradient(135deg,var(--purple),#6d28d9);
   color:#fff;
-  font-weight:900;
+  font-size:15px;
+  font-weight:bold;
   cursor:pointer;
+  background:linear-gradient(90deg,#7c3aed,#06b6d4);
 }
 
 .error{
-  display:none;
-  color:#fca5a5;
-  margin-top:12px;
+  color:#fb7185;
+  text-align:center;
   font-size:13px;
+  margin-top:12px;
+  min-height:18px;
 }
 
 .dashboard{
@@ -127,341 +121,366 @@ textarea{
 .topbar{
   position:sticky;
   top:0;
-  z-index:50;
-  background:rgba(8,9,20,.8);
-  backdrop-filter:blur(18px);
-  border-bottom:1px solid var(--border);
+  z-index:30;
+  background:rgba(8,11,24,.92);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .topbarInner{
   width:min(1200px,94%);
-  min-height:72px;
+  min-height:75px;
   margin:auto;
   display:flex;
   align-items:center;
   justify-content:space-between;
+  gap:15px;
+}
+
+.adminBrand{
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
 .logo{
   display:flex;
   align-items:center;
-  gap:11px;
+  gap:10px;
+  font-size:18px;
   font-weight:900;
 }
 
 .logoIcon{
-  width:42px;
-  height:42px;
-  border-radius:13px;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(135deg,var(--purple),var(--cyan));
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#7c3aed,#06b6d4);
+  box-shadow:0 0 25px rgba(124,58,237,.3);
+}
+
+.heartBtn{
+  width:44px;
+  height:44px;
+  border:1px solid rgba(244,114,182,.25);
+  border-radius:14px;
+  background:rgba(244,114,182,.08);
+  color:#fb7185;
+  font-size:22px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.heartBtn:hover{
+  transform:scale(1.06);
+  background:rgba(244,114,182,.15);
 }
 
 .logout{
-  border:1px solid rgba(239,68,68,.3);
-  background:rgba(239,68,68,.08);
-  color:#fca5a5;
-  padding:9px 14px;
-  border-radius:10px;
+  border:1px solid rgba(255,255,255,.1);
+  background:#11172c;
+  color:#cbd5e1;
+  padding:10px 15px;
+  border-radius:12px;
   cursor:pointer;
 }
 
 .container{
   width:min(1200px,94%);
-  margin:auto;
-  padding:35px 0 70px;
+  margin:30px auto 70px;
 }
 
-.heading{
+.pageTitle{
   margin-bottom:25px;
 }
 
-.heading h1{
-  font-size:32px;
+.pageTitle h1{
+  font-size:30px;
   margin-bottom:7px;
 }
 
-.heading p{
-  color:var(--muted);
+.pageTitle p{
+  color:#8d96ad;
+  font-size:13px;
 }
 
 .stats{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:16px;
+  gap:15px;
+  margin-bottom:25px;
 }
 
 .stat{
-  background:#111426;
-  border:1px solid var(--border);
+  background:#11172c;
+  border:1px solid rgba(255,255,255,.08);
   border-radius:20px;
-  padding:22px;
+  padding:20px;
 }
 
-.stat small{
-  color:var(--muted);
+.stat span{
+  color:#8d96ad;
+  font-size:13px;
 }
 
 .stat strong{
   display:block;
-  font-size:32px;
-  margin-top:9px;
+  margin-top:8px;
+  font-size:28px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:350px 1fr;
+  gap:20px;
 }
 
 .panel{
-  background:#111426;
-  border:1px solid var(--border);
-  border-radius:23px;
-  padding:23px;
-  margin-top:20px;
+  background:#11172c;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:22px;
+  padding:22px;
 }
 
-.panelTitle{
-  font-size:20px;
-  margin-bottom:18px;
+.panel h2{
+  margin-bottom:20px;
+  font-size:19px;
 }
 
-.timeGrid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:16px;
-}
-
-.actions{
+.switchRow{
   display:flex;
-  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
   gap:10px;
-  margin-top:17px;
+  padding:13px 0;
 }
 
-.btn{
-  border:1px solid var(--border);
-  padding:11px 15px;
-  border-radius:11px;
-  color:#fff;
-  background:#171a31;
-  cursor:pointer;
-  font-weight:700;
-}
-
-.btn.green{
-  color:#86efac;
-  background:rgba(34,197,94,.12);
-}
-
-.btn.red{
-  color:#fca5a5;
-  background:rgba(239,68,68,.12);
-}
-
-.btn.purple{
-  color:#c4b5fd;
-  background:rgba(139,92,246,.15);
-}
-
-.addGrid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:17px;
-}
-
-.full{
-  grid-column:1/-1;
-}
-
-.fileBox{
-  border:1px dashed rgba(139,92,246,.45);
-  background:rgba(139,92,246,.06);
-  border-radius:15px;
-  padding:17px;
-}
-
-.fileBox input{
+.switch{
+  width:52px;
+  height:28px;
   border:0;
-  padding:5px;
-  background:transparent;
+  border-radius:30px;
+  background:#374151;
+  cursor:pointer;
+  position:relative;
 }
 
-.preview{
-  width:150px;
-  height:100px;
-  object-fit:cover;
-  border-radius:12px;
-  margin-top:12px;
-  display:none;
+.switch span{
+  width:22px;
+  height:22px;
+  position:absolute;
+  top:3px;
+  right:4px;
+  border-radius:50%;
+  background:#fff;
+  transition:.2s;
 }
 
-.candidates{
+.switch.active{
+  background:#16a34a;
+}
+
+.switch.active span{
+  right:26px;
+}
+
+.small-btn{
+  border:1px solid rgba(255,255,255,.1);
+  background:#0c1123;
+  color:#fff;
+  padding:10px 13px;
+  border-radius:11px;
+  cursor:pointer;
+}
+
+.danger{
+  border-color:rgba(244,63,94,.25);
+  color:#fb7185;
+}
+
+.candidate-list{
   display:flex;
   flex-direction:column;
-  gap:14px;
+  gap:12px;
 }
 
 .candidate{
   display:flex;
   align-items:center;
-  gap:16px;
-  padding:15px;
-  border-radius:18px;
-  background:#0d1020;
-  border:1px solid var(--border);
+  gap:14px;
+  padding:14px;
+  border-radius:17px;
+  background:#0c1123;
+  border:1px solid rgba(255,255,255,.06);
 }
 
-.candidateImage{
-  width:75px;
-  height:75px;
-  border-radius:14px;
+.candidate-img{
+  width:62px;
+  height:62px;
+  flex:none;
+  border-radius:15px;
+  overflow:hidden;
+  background:#1b223c;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+}
+
+.candidate-img img{
+  width:100%;
+  height:100%;
   object-fit:cover;
-  flex-shrink:0;
 }
 
-.candidateInfo{
+.candidate-info{
   flex:1;
   min-width:0;
 }
 
-.candidateInfo h3{
+.candidate-info h3{
+  font-size:16px;
   margin-bottom:5px;
 }
 
-.candidateInfo p{
-  color:var(--muted);
-  font-size:13px;
+.candidate-info p{
+  color:#77829c;
+  font-size:12px;
   overflow:hidden;
   text-overflow:ellipsis;
   white-space:nowrap;
 }
 
-.voteBox{
-  min-width:105px;
-  text-align:center;
-  padding:12px;
-  border-radius:15px;
-  background:linear-gradient(
-    135deg,
-    rgba(139,92,246,.16),
-    rgba(34,211,238,.08)
-  );
-  border:1px solid rgba(139,92,246,.22);
+.vote-count{
+  margin-top:7px;
+  color:#22d3ee;
+  font-size:13px;
+  font-weight:bold;
 }
 
-.voteBox strong{
-  display:block;
-  font-size:30px;
-  background:linear-gradient(90deg,#c4b5fd,#67e8f9);
-  -webkit-background-clip:text;
-  color:transparent;
-}
-
-.voteBox span{
-  color:var(--muted);
-  font-size:11px;
-}
-
-.candidateActions{
+.candidate-actions{
   display:flex;
+  flex-direction:column;
   gap:7px;
 }
 
-.smallBtn{
-  border:0;
-  padding:9px 11px;
-  border-radius:9px;
-  cursor:pointer;
-  color:#fff;
-  background:#252944;
-  font-size:12px;
-}
-
-.reset{
-  background:rgba(245,158,11,.13);
-  color:#fcd34d;
-}
-
-.delete{
-  background:rgba(239,68,68,.13);
-  color:#fca5a5;
+.image-input{
+  width:100%;
+  padding:10px;
+  border-radius:12px;
+  background:#0c1123;
+  border:1px solid rgba(255,255,255,.1);
+  color:#aab2c8;
 }
 
 .empty{
+  padding:40px;
   text-align:center;
-  padding:45px;
-  border:1px dashed var(--border);
-  border-radius:18px;
-  color:var(--muted);
+  color:#7f8aa3;
 }
 
-.message{
+.toast{
   position:fixed;
-  left:50%;
   bottom:25px;
-  transform:translateX(-50%) translateY(100px);
-  z-index:100;
-  background:#171a31;
-  border:1px solid var(--border);
-  padding:14px 20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#151c35;
+  border:1px solid rgba(255,255,255,.1);
+  padding:13px 20px;
   border-radius:14px;
-  box-shadow:0 20px 50px rgba(0,0,0,.4);
-  transition:.3s;
+  z-index:100;
+  display:none;
 }
 
-.message.show{
-  transform:translateX(-50%) translateY(0);
+.heartOverlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:200;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(8px);
 }
 
-@media(max-width:800px){
+.heartPanel{
+  width:min(450px,100%);
+  background:#11172c;
+  border:1px solid rgba(244,114,182,.2);
+  border-radius:24px;
+  padding:25px;
+  box-shadow:0 25px 80px rgba(0,0,0,.5);
+}
+
+.heartHead{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:22px;
+}
+
+.heartHead h2{
+  color:#fff;
+}
+
+.closeHeart{
+  width:35px;
+  height:35px;
+  border:0;
+  border-radius:10px;
+  background:#202840;
+  color:#fff;
+  cursor:pointer;
+  font-size:18px;
+}
+
+.heartDescription{
+  color:#8d96ad;
+  font-size:12px;
+  line-height:1.8;
+  margin-bottom:20px;
+}
+
+@media(max-width:850px){
+  .grid{
+    grid-template-columns:1fr;
+  }
 
   .stats{
     grid-template-columns:1fr;
   }
+}
 
-  .addGrid,
-  .timeGrid{
-    grid-template-columns:1fr;
+@media(max-width:550px){
+  .topbarInner{
+    min-height:65px;
   }
 
-  .full{
-    grid-column:auto;
+  .logo{
+    font-size:14px;
+  }
+
+  .logoIcon,
+  .heartBtn{
+    width:40px;
+    height:40px;
+  }
+
+  .logout{
+    padding:8px 10px;
+    font-size:12px;
   }
 
   .candidate{
-    flex-wrap:wrap;
+    align-items:flex-start;
   }
 
-  .candidateInfo{
-    width:calc(100% - 100px);
-  }
-
-  .voteBox{
-    width:100%;
-  }
-
-  .candidateActions{
-    width:100%;
-  }
-
-  .candidateActions button{
-    flex:1;
-  }
-}
-
-@media(max-width:500px){
-
-  .container{
-    width:92%;
-  }
-
-  .panel{
-    padding:17px;
-  }
-
-  .heading h1{
-    font-size:25px;
-  }
-
-  .loginBox{
-    padding:25px 18px;
+  .candidate-actions{
+    flex-direction:column;
   }
 }
 </style>
@@ -469,965 +488,550 @@ textarea{
 
 <body>
 
-<div id="loginPage" class="loginPage">
+<!-- LOGIN -->
+<section id="loginScreen" class="login">
+  <div class="login-box">
 
-  <div class="loginBox">
-
-    <div class="loginIcon">🔐</div>
+    <div class="login-logo">⚿</div>
 
     <h1>لوحة المرشد</h1>
+    <p>تسجيل الدخول إلى لوحة التحكم</p>
 
-    <p>
-      أدخل كلمة المرور للوصول إلى لوحة التحكم.
-    </p>
-
-    <label>كلمة المرور</label>
-
-    <input
-      id="password"
-      type="password"
-      placeholder="أدخل كلمة المرور"
-    >
-
-    <button
-      class="primary"
-      onclick="login()"
-    >
-      دخول
-    </button>
-
-    <div id="loginError" class="error">
-      كلمة المرور غير صحيحة.
+    <div class="field">
+      <label>كلمة المرور</label>
+      <input
+        id="password"
+        type="password"
+        placeholder="أدخل كلمة المرور"
+        onkeydown="if(event.key==='Enter')login()"
+      >
     </div>
+
+    <button class="primary" onclick="login()">دخول</button>
+
+    <div id="loginError" class="error"></div>
 
   </div>
+</section>
 
-</div>
+<!-- DASHBOARD -->
+<section id="dashboard" class="dashboard">
 
+  <header class="topbar">
+    <div class="topbarInner">
 
-<div id="dashboard" class="dashboard">
+      <div class="adminBrand">
 
-<header class="topbar">
+        <div class="logo">
+          <div class="logoIcon">⚿</div>
+          <span>لوحة المرشد</span>
+        </div>
 
-  <div class="topbarInner">
-
-    <div class="logo">
-      <div class="logoIcon">✓</div>
-      <span>لوحة المرشد</span>
-    </div>
-
-    <button
-      class="logout"
-      onclick="logout()"
-    >
-      تسجيل الخروج
-    </button>
-
-  </div>
-
-</header>
-
-
-<main class="container">
-
-  <div class="heading">
-
-    <h1>لوحة التحكم</h1>
-
-    <p>
-      إدارة المرشحين والتصويت.
-    </p>
-
-  </div>
-
-
-  <section class="stats">
-
-    <div class="stat">
-      <small>عدد المرشحين</small>
-      <strong id="statCandidates">0</strong>
-    </div>
-
-    <div class="stat">
-      <small>إجمالي الأصوات</small>
-      <strong id="statVotes">0</strong>
-    </div>
-
-    <div class="stat">
-      <small>حالة التصويت</small>
-      <strong id="statStatus">مغلق</strong>
-    </div>
-
-  </section>
-
-
-  <section class="panel">
-
-    <h2 class="panelTitle">
-      ⚙️ إعدادات التصويت
-    </h2>
-
-    <div class="timeGrid">
-
-      <div>
-        <label>وقت البداية</label>
-        <input
-          id="startTime"
-          type="datetime-local"
+        <!-- القلب في نفس مكان رمز لوحة المرشد -->
+        <button
+          class="heartBtn"
+          onclick="openHeart()"
+          title="زيادة التصويتات"
+          aria-label="زيادة التصويتات"
         >
+          ♥
+        </button>
+
       </div>
 
-      <div>
-        <label>وقت النهاية</label>
-        <input
-          id="endTime"
-          type="datetime-local"
-        >
+      <button class="logout" onclick="logout()">تسجيل الخروج</button>
+
+    </div>
+  </header>
+
+  <main class="container">
+
+    <div class="pageTitle">
+      <h1>لوحة التحكم</h1>
+      <p>إدارة المرشحين والتصويتات وإعدادات التصويت.</p>
+    </div>
+
+    <div class="stats">
+
+      <div class="stat">
+        <span>عدد المرشحين</span>
+        <strong id="statCandidates">0</strong>
+      </div>
+
+      <div class="stat">
+        <span>إجمالي التصويتات</span>
+        <strong id="statVotes">0</strong>
+      </div>
+
+      <div class="stat">
+        <span>حالة التصويت</span>
+        <strong id="statStatus">مغلق</strong>
       </div>
 
     </div>
 
-    <label>نظام التصويت</label>
+    <div class="grid">
 
-    <select id="voteMode">
-
-      <option value="open">
-        مفتوح الآن
-      </option>
-
-      <option value="closed">
-        مغلق الآن
-      </option>
-
-      <option value="auto">
-        تلقائي حسب الوقت
-      </option>
-
-    </select>
-
-    <div class="actions">
-
-      <button
-        class="btn purple"
-        onclick="saveSettings()"
-      >
-        💾 حفظ
-      </button>
-
-      <button
-        class="btn green"
-        onclick="openVoting()"
-      >
-        🟢 فتح التصويت
-      </button>
-
-      <button
-        class="btn red"
-        onclick="closeVoting()"
-      >
-        🔴 إغلاق التصويت
-      </button>
-
-      <button
-        class="btn"
-        onclick="autoVoting()"
-      >
-        ⏱️ تلقائي
-      </button>
-
-    </div>
-
-  </section>
-
-
-  <section class="panel">
-
-    <h2 class="panelTitle">
-      ➕ إضافة مرشح
-    </h2>
-
-    <div class="addGrid">
-
+      <!-- SETTINGS + ADD -->
       <div>
 
-        <label>اسم المرشح</label>
+        <div class="panel" style="margin-bottom:20px">
 
-        <input
-          id="candidateName"
-          type="text"
-          placeholder="مثال: أحمد محمد"
-        >
+          <h2>إعدادات التصويت</h2>
 
-      </div>
+          <div class="switchRow">
+            <span>فتح التصويت</span>
 
+            <button
+              id="voteSwitch"
+              class="switch"
+              onclick="toggleVoting()"
+            >
+              <span></span>
+            </button>
+          </div>
 
-      <div>
+          <div class="field">
+            <label>وقت البداية</label>
+            <input id="startTime" type="datetime-local">
+          </div>
 
-        <label>صورة المرشح</label>
+          <div class="field">
+            <label>وقت النهاية</label>
+            <input id="endTime" type="datetime-local">
+          </div>
 
-        <div class="fileBox">
+          <button class="primary" onclick="saveSettings()">
+            حفظ الإعدادات
+          </button>
 
-          <input
-            id="candidateImage"
-            type="file"
-            accept="image/*"
-            onchange="previewImage(event)"
-          >
+        </div>
 
-          <img
-            id="preview"
-            class="preview"
-          >
+        <div class="panel">
+
+          <h2>إضافة شخص</h2>
+
+          <div class="field">
+            <label>اسم الشخص</label>
+            <input id="candidateName" type="text" placeholder="اسم الشخص">
+          </div>
+
+          <div class="field">
+            <label>الوصف</label>
+            <textarea
+              id="candidateDescription"
+              placeholder="اكتب وصفًا مختصرًا"
+            ></textarea>
+          </div>
+
+          <div class="field">
+            <label>صورة الشخص</label>
+            <input
+              id="candidateImage"
+              class="image-input"
+              type="file"
+              accept="image/*"
+            >
+          </div>
+
+          <button class="primary" onclick="addCandidate()">
+            إضافة الشخص
+          </button>
 
         </div>
 
       </div>
 
+      <!-- CANDIDATES -->
+      <div class="panel">
 
-      <div class="full">
+        <h2>الأشخاص والتصويتات</h2>
 
-        <label>نبذة عن المرشح</label>
+        <div id="candidateList" class="candidate-list"></div>
 
-        <textarea
-          id="candidateDescription"
-          placeholder="اكتب نبذة قصيرة..."
-        ></textarea>
+        <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap">
+
+          <button class="small-btn danger" onclick="resetAllVotes()">
+            تصفير جميع التصويتات
+          </button>
+
+        </div>
 
       </div>
 
     </div>
 
-    <button
-      class="primary"
-      onclick="addCandidate()"
-    >
-      إضافة المرشح
+  </main>
+
+</section>
+
+<!-- HEART / EXTRA VOTES -->
+<div
+  id="heartOverlay"
+  class="heartOverlay"
+  onclick="if(event.target===this)closeHeart()"
+>
+
+  <div class="heartPanel">
+
+    <div class="heartHead">
+
+      <h2>♥ زيادة التصويتات</h2>
+
+      <button
+        class="closeHeart"
+        onclick="closeHeart()"
+        aria-label="إغلاق"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <p class="heartDescription">
+      أدخل اسم الشخص وعدد التصويتات التي تريد إضافتها فقط.
+    </p>
+
+    <div class="field">
+      <label>اسم الشخص</label>
+      <input
+        id="heartName"
+        type="text"
+        placeholder="اكتب اسم الشخص"
+      >
+    </div>
+
+    <div class="field">
+      <label>عدد التصويتات</label>
+      <input
+        id="heartVotes"
+        type="number"
+        min="1"
+        step="1"
+        placeholder="مثال: 10"
+      >
+    </div>
+
+    <button class="primary" onclick="addExtraVotes()">
+      إضافة التصويتات
     </button>
 
-  </section>
-
-
-  <section class="panel">
-
-    <h2 class="panelTitle">
-      🗳️ المرشحون والأصوات
-    </h2>
-
-    <div
-      id="candidates"
-      class="candidates"
-    ></div>
-
-  </section>
-
-
-  <section class="panel">
-
-    <h2 class="panelTitle">
-      🔄 إدارة الأصوات
-    </h2>
-
-    <button
-      class="btn red"
-      onclick="resetAllVotes()"
-    >
-      تصفير جميع الأصوات
-    </button>
-
-  </section>
-
-</main>
+  </div>
 
 </div>
 
-
-<div id="message" class="message"></div>
-
+<div id="toast" class="toast"></div>
 
 <script>
-
 const PASSWORD="MNMN0505";
 
 const CANDIDATES_KEY="candidates";
 const VOTES_KEY="votes";
 const SETTINGS_KEY="voteSettings";
 
+let loggedIn=false;
+
+function login(){
+
+  const password=document.getElementById("password").value;
+  const error=document.getElementById("loginError");
+
+  if(password===PASSWORD){
+
+    loggedIn=true;
+
+    document.getElementById("loginScreen").style.display="none";
+    document.getElementById("dashboard").style.display="block";
+
+    error.textContent="";
+    loadSettings();
+    renderCandidates();
+    updateStats();
+
+  }else{
+
+    error.textContent="كلمة المرور غير صحيحة.";
+
+  }
+}
+
+function logout(){
+
+  loggedIn=false;
+
+  document.getElementById("dashboard").style.display="none";
+  document.getElementById("loginScreen").style.display="flex";
+
+  document.getElementById("password").value="";
+}
 
 function getCandidates(){
 
   try{
-
-    return JSON.parse(
-      localStorage.getItem(
-        CANDIDATES_KEY
-      )
-    ) || [];
-
+    return JSON.parse(localStorage.getItem(CANDIDATES_KEY))||[];
   }catch(e){
-
     return [];
-
   }
 
 }
 
-
-function getVotes(){
-
-  try{
-
-    return JSON.parse(
-      localStorage.getItem(
-        VOTES_KEY
-      )
-    ) || {};
-
-  }catch(e){
-
-    return {};
-
-  }
-
-}
-
-
-function getSettings(){
-
-  try{
-
-    return JSON.parse(
-      localStorage.getItem(
-        SETTINGS_KEY
-      )
-    ) || {
-      mode:"closed",
-      start:"",
-      end:""
-    };
-
-  }catch(e){
-
-    return {
-      mode:"closed",
-      start:"",
-      end:""
-    };
-
-  }
-
-}
-
-
-function login(){
-
-  const password=
-    document.getElementById(
-      "password"
-    ).value;
-
-  if(password===PASSWORD){
-
-    sessionStorage.setItem(
-      "adminLoggedIn",
-      "true"
-    );
-
-    document.getElementById(
-      "loginPage"
-    ).style.display="none";
-
-    document.getElementById(
-      "dashboard"
-    ).style.display="block";
-
-    loadDashboard();
-
-  }else{
-
-    document.getElementById(
-      "loginError"
-    ).style.display="block";
-
-  }
-
-}
-
-
-document.getElementById(
-  "password"
-).addEventListener(
-  "keydown",
-  function(e){
-
-    if(e.key==="Enter"){
-      login();
-    }
-
-  }
-);
-
-
-function logout(){
-
-  sessionStorage.removeItem(
-    "adminLoggedIn"
-  );
-
-  document.getElementById(
-    "dashboard"
-  ).style.display="none";
-
-  document.getElementById(
-    "loginPage"
-  ).style.display="flex";
-
-}
-
-
-function showMessage(text){
-
-  const box=
-    document.getElementById(
-      "message"
-    );
-
-  box.textContent=text;
-
-  box.classList.add("show");
-
-  setTimeout(()=>{
-
-    box.classList.remove("show");
-
-  },2500);
-
-}
-
-
-function previewImage(event){
-
-  const file=
-    event.target.files[0];
-
-  if(!file)return;
-
-  const preview=
-    document.getElementById(
-      "preview"
-    );
-
-  preview.src=
-    URL.createObjectURL(file);
-
-  preview.style.display="block";
-
-}
-
-
-function resizeImage(
-  file,
-  maxSize=800,
-  quality=.78
-){
-
-  return new Promise(
-    (resolve,reject)=>{
-
-      const reader=
-        new FileReader();
-
-      reader.onload=function(){
-
-        const img=
-          new Image();
-
-        img.onload=function(){
-
-          let width=img.width;
-          let height=img.height;
-
-          if(
-            width>maxSize ||
-            height>maxSize
-          ){
-
-            if(width>height){
-
-              height=Math.round(
-                height*maxSize/width
-              );
-
-              width=maxSize;
-
-            }else{
-
-              width=Math.round(
-                width*maxSize/height
-              );
-
-              height=maxSize;
-
-            }
-
-          }
-
-          const canvas=
-            document.createElement(
-              "canvas"
-            );
-
-          canvas.width=width;
-          canvas.height=height;
-
-          const ctx=
-            canvas.getContext("2d");
-
-          ctx.drawImage(
-            img,
-            0,
-            0,
-            width,
-            height
-          );
-
-          resolve(
-            canvas.toDataURL(
-              "image/jpeg",
-              quality
-            )
-          );
-
-        };
-
-        img.onerror=reject;
-
-        img.src=reader.result;
-
-      };
-
-      reader.onerror=reject;
-
-      reader.readAsDataURL(file);
-
-    }
-  );
-
-}
-
-
-async function addCandidate(){
-
-  const name=
-    document.getElementById(
-      "candidateName"
-    ).value.trim();
-
-  const description=
-    document.getElementById(
-      "candidateDescription"
-    ).value.trim();
-
-  const file=
-    document.getElementById(
-      "candidateImage"
-    ).files[0];
-
-  if(!name){
-
-    showMessage(
-      "اكتب اسم المرشح أولًا."
-    );
-
-    return;
-
-  }
-
-  if(!file){
-
-    showMessage(
-      "اختر صورة للمرشح."
-    );
-
-    return;
-
-  }
-
-  try{
-
-    const image=
-      await resizeImage(file);
-
-    const candidates=
-      getCandidates();
-
-    const candidate={
-
-      id:Date.now().toString(),
-
-      name:name,
-
-      description:description,
-
-      image:image
-
-    };
-
-    candidates.push(candidate);
-
-    localStorage.setItem(
-      CANDIDATES_KEY,
-      JSON.stringify(candidates)
-    );
-
-    const votes=getVotes();
-
-    votes[candidate.id]=0;
-
-    localStorage.setItem(
-      VOTES_KEY,
-      JSON.stringify(votes)
-    );
-
-    document.getElementById(
-      "candidateName"
-    ).value="";
-
-    document.getElementById(
-      "candidateDescription"
-    ).value="";
-
-    document.getElementById(
-      "candidateImage"
-    ).value="";
-
-    document.getElementById(
-      "preview"
-    ).style.display="none";
-
-    showMessage(
-      "تمت إضافة المرشح ✓"
-    );
-
-    renderCandidates();
-    updateStats();
-
-  }catch(e){
-
-    showMessage(
-      "تعذر إضافة الصورة."
-    );
-
-  }
-
-}
-
-
-function saveSettings(){
-
-  const mode=
-    document.getElementById(
-      "voteMode"
-    ).value;
-
-  const start=
-    document.getElementById(
-      "startTime"
-    ).value;
-
-  const end=
-    document.getElementById(
-      "endTime"
-    ).value;
-
-  if(
-    mode==="auto" &&
-    start &&
-    end &&
-    new Date(end)<=new Date(start)
-  ){
-
-    showMessage(
-      "وقت النهاية يجب أن يكون بعد البداية."
-    );
-
-    return;
-
-  }
-
-  localStorage.setItem(
-    SETTINGS_KEY,
-    JSON.stringify({
-      mode:mode,
-      start:start,
-      end:end
-    })
-  );
-
-  showMessage(
-    "تم حفظ الإعدادات ✓"
-  );
-
-  updateStats();
-
-}
-
-
-function openVoting(){
-
-  const settings=getSettings();
-
-  settings.mode="open";
-
-  localStorage.setItem(
-    SETTINGS_KEY,
-    JSON.stringify(settings)
-  );
-
-  document.getElementById(
-    "voteMode"
-  ).value="open";
-
-  showMessage(
-    "تم فتح التصويت 🟢"
-  );
-
-  updateStats();
-
-}
-
-
-function closeVoting(){
-
-  const settings=getSettings();
-
-  settings.mode="closed";
-
-  localStorage.setItem(
-    SETTINGS_KEY,
-    JSON.stringify(settings)
-  );
-
-  document.getElementById(
-    "voteMode"
-  ).value="closed";
-
-  showMessage(
-    "تم إغلاق التصويت 🔴"
-  );
-
-  updateStats();
-
-}
-
-
-function autoVoting(){
-
-  document.getElementById(
-    "voteMode"
-  ).value="auto";
-
-  saveSettings();
-
-}
-
-
-function deleteCandidate(id){
-
-  if(
-    !confirm(
-      "هل تريد حذف هذا الشخص؟"
-    )
-  ){
-    return;
-  }
-
-  let candidates=
-    getCandidates();
-
-  candidates=
-    candidates.filter(
-      c=>String(c.id)!==String(id)
-    );
+function saveCandidates(candidates){
 
   localStorage.setItem(
     CANDIDATES_KEY,
     JSON.stringify(candidates)
   );
 
-  const votes=getVotes();
-
-  delete votes[id];
-
-  localStorage.setItem(
-    VOTES_KEY,
-    JSON.stringify(votes)
-  );
-
-  showMessage(
-    "تم حذف الشخص."
-  );
-
-  renderCandidates();
-  updateStats();
-
 }
 
+function getVotes(){
 
-function resetCandidateVotes(id){
-
-  if(
-    !confirm(
-      "هل تريد تصفير أصوات هذا الشخص؟"
-    )
-  ){
-    return;
+  try{
+    return JSON.parse(localStorage.getItem(VOTES_KEY))||{};
+  }catch(e){
+    return {};
   }
 
-  const votes=getVotes();
+}
 
-  votes[id]=0;
+function saveVotes(votes){
 
   localStorage.setItem(
     VOTES_KEY,
     JSON.stringify(votes)
   );
 
-  showMessage(
-    "تم تصفير الأصوات."
-  );
-
-  renderCandidates();
-  updateStats();
-
 }
 
+function getSettings(){
 
-function resetAllVotes(){
+  try{
 
-  if(
-    !confirm(
-      "هل تريد تصفير جميع الأصوات؟"
-    )
-  ){
-    return;
+    return JSON.parse(
+      localStorage.getItem(SETTINGS_KEY)
+    )||{
+      open:true,
+      start:"",
+      end:""
+    };
+
+  }catch(e){
+
+    return{
+      open:true,
+      start:"",
+      end:""
+    };
+
   }
 
-  const candidates=
-    getCandidates();
+}
 
-  const votes={};
+function saveSettings(){
 
-  candidates.forEach(c=>{
-    votes[c.id]=0;
-  });
+  const settings={
+    open:document.getElementById("voteSwitch").classList.contains("active"),
+    start:document.getElementById("startTime").value,
+    end:document.getElementById("endTime").value
+  };
 
   localStorage.setItem(
-    VOTES_KEY,
-    JSON.stringify(votes)
+    SETTINGS_KEY,
+    JSON.stringify(settings)
   );
 
-  showMessage(
-    "تم تصفير جميع الأصوات."
-  );
-
-  renderCandidates();
   updateStats();
+  showToast("تم حفظ إعدادات التصويت.");
 
 }
 
-
-function votingIsOpen(){
+function loadSettings(){
 
   const settings=getSettings();
 
-  if(settings.mode==="open")
-    return true;
+  document
+    .getElementById("voteSwitch")
+    .classList.toggle("active",settings.open!==false);
 
-  if(settings.mode==="closed")
-    return false;
+  document.getElementById("startTime").value=settings.start||"";
+  document.getElementById("endTime").value=settings.end||"";
 
-  if(settings.mode==="auto"){
+}
 
-    const now=new Date();
+function toggleVoting(){
 
-    if(
-      settings.start &&
-      now<new Date(settings.start)
-    )
-      return false;
+  const button=document.getElementById("voteSwitch");
 
-    if(
-      settings.end &&
-      now>new Date(settings.end)
-    )
-      return false;
+  button.classList.toggle("active");
 
-    return true;
+}
+
+function addCandidate(){
+
+  const name=document
+    .getElementById("candidateName")
+    .value
+    .trim();
+
+  const description=document
+    .getElementById("candidateDescription")
+    .value
+    .trim();
+
+  const imageInput=document.getElementById("candidateImage");
+
+  if(!name){
+
+    showToast("اكتب اسم الشخص أولًا.");
+    return;
 
   }
 
-  return false;
+  const candidates=getCandidates();
+
+  const candidate={
+    id:Date.now().toString(),
+    name:name,
+    description:description,
+    image:""
+  };
+
+  if(imageInput.files.length){
+
+    const file=imageInput.files[0];
+
+    if(!file.type.startsWith("image/")){
+
+      showToast("الملف المختار ليس صورة.");
+      return;
+
+    }
+
+    resizeImage(file,800,800,0.82)
+      .then(imageData=>{
+
+        candidate.image=imageData;
+
+        candidates.push(candidate);
+        saveCandidates(candidates);
+
+        clearCandidateForm();
+
+        renderCandidates();
+        updateStats();
+
+        showToast("تمت إضافة الشخص بنجاح.");
+
+      })
+      .catch(()=>{
+
+        showToast("حدث خطأ أثناء معالجة الصورة.");
+
+      });
+
+  }else{
+
+    candidates.push(candidate);
+
+    saveCandidates(candidates);
+
+    clearCandidateForm();
+
+    renderCandidates();
+    updateStats();
+
+    showToast("تمت إضافة الشخص بنجاح.");
+
+  }
 
 }
 
+function resizeImage(file,maxWidth,maxHeight,quality){
 
-function updateStats(){
+  return new Promise((resolve,reject)=>{
 
-  const candidates=
-    getCandidates();
+    const reader=new FileReader();
 
-  const votes=
-    getVotes();
+    reader.onload=event=>{
 
-  let total=0;
+      const img=new Image();
 
-  candidates.forEach(c=>{
+      img.onload=()=>{
 
-    total+=Number(
-      votes[c.id]||0
-    );
+        let width=img.width;
+        let height=img.height;
+
+        if(width>maxWidth){
+
+          height*=maxWidth/width;
+          width=maxWidth;
+
+        }
+
+        if(height>maxHeight){
+
+          width*=maxHeight/height;
+          height=maxHeight;
+
+        }
+
+        const canvas=document.createElement("canvas");
+
+        canvas.width=Math.round(width);
+        canvas.height=Math.round(height);
+
+        const ctx=canvas.getContext("2d");
+
+        ctx.drawImage(
+          img,
+          0,
+          0,
+          canvas.width,
+          canvas.height
+        );
+
+        resolve(
+          canvas.toDataURL(
+            "image/jpeg",
+            quality
+          )
+        );
+
+      };
+
+      img.onerror=reject;
+      img.src=event.target.result;
+
+    };
+
+    reader.onerror=reject;
+
+    reader.readAsDataURL(file);
 
   });
 
-  document.getElementById(
-    "statCandidates"
-  ).textContent=
-    candidates.length;
+}
 
-  document.getElementById(
-    "statVotes"
-  ).textContent=
-    total;
+function clearCandidateForm(){
 
-  document.getElementById(
-    "statStatus"
-  ).textContent=
-    votingIsOpen()
-      ?"مفتوح"
-      :"مغلق";
+  document.getElementById("candidateName").value="";
+  document.getElementById("candidateDescription").value="";
+  document.getElementById("candidateImage").value="";
 
 }
 
-
 function renderCandidates(){
 
-  const box=
-    document.getElementById(
-      "candidates"
-    );
+  const list=document.getElementById("candidateList");
 
-  const candidates=
-    getCandidates();
-
-  const votes=
-    getVotes();
+  const candidates=getCandidates();
+  const votes=getVotes();
 
   if(!candidates.length){
 
-    box.innerHTML=`
+    list.innerHTML=`
       <div class="empty">
-        🗳️<br><br>
-        لا يوجد مرشحون حتى الآن.
+        لا يوجد أشخاص مضافون حاليًا.
       </div>
     `;
 
@@ -1435,238 +1039,278 @@ function renderCandidates(){
 
   }
 
-  box.innerHTML="";
+  list.innerHTML=candidates.map(candidate=>{
 
-  candidates.forEach(candidate=>{
+    const voteCount=Number(votes[candidate.id]||0);
 
-    const row=
-      document.createElement(
-        "div"
-      );
+    const image=candidate.image
+      ? `<img src="${candidate.image}" alt="">`
+      : `👤`;
 
-    row.className="candidate";
+    return`
 
-    const image=
-      document.createElement(
-        "img"
-      );
+      <div class="candidate">
 
-    image.className=
-      "candidateImage";
+        <div class="candidate-img">
+          ${image}
+        </div>
 
-    image.src=candidate.image;
+        <div class="candidate-info">
 
-    image.alt=candidate.name;
+          <h3>${escapeHTML(candidate.name)}</h3>
 
+          <p>
+            ${escapeHTML(
+              candidate.description||"بدون وصف"
+            )}
+          </p>
 
-    const info=
-      document.createElement(
-        "div"
-      );
+          <div class="vote-count">
+            ${voteCount} تصويت
+          </div>
 
-    info.className=
-      "candidateInfo";
+        </div>
 
+        <div class="candidate-actions">
 
-    const title=
-      document.createElement(
-        "h3"
-      );
+          <button
+            class="small-btn"
+            onclick="resetCandidateVotes('${candidate.id}')"
+          >
+            تصفير
+          </button>
 
-    title.textContent=
-      candidate.name;
+          <button
+            class="small-btn danger"
+            onclick="deleteCandidate('${candidate.id}')"
+          >
+            حذف
+          </button>
 
+        </div>
 
-    const desc=
-      document.createElement(
-        "p"
-      );
+      </div>
 
-    desc.textContent=
-      candidate.description ||
-      "بدون نبذة";
+    `;
 
-
-    info.appendChild(title);
-    info.appendChild(desc);
-
-
-    const voteBox=
-      document.createElement(
-        "div"
-      );
-
-    voteBox.className=
-      "voteBox";
-
-
-    const number=
-      document.createElement(
-        "strong"
-      );
-
-    number.textContent=
-      Number(
-        votes[candidate.id]||0
-      );
-
-
-    const text=
-      document.createElement(
-        "span"
-      );
-
-    text.textContent="صوت";
-
-
-    voteBox.appendChild(number);
-    voteBox.appendChild(text);
-
-
-    const actions=
-      document.createElement(
-        "div"
-      );
-
-    actions.className=
-      "candidateActions";
-
-
-    const reset=
-      document.createElement(
-        "button"
-      );
-
-    reset.className=
-      "smallBtn reset";
-
-    reset.textContent="تصفير";
-
-    reset.onclick=()=>{
-      resetCandidateVotes(
-        candidate.id
-      );
-    };
-
-
-    const del=
-      document.createElement(
-        "button"
-      );
-
-    del.className=
-      "smallBtn delete";
-
-    del.textContent="حذف";
-
-    del.onclick=()=>{
-      deleteCandidate(
-        candidate.id
-      );
-    };
-
-
-    actions.appendChild(reset);
-    actions.appendChild(del);
-
-
-    row.appendChild(image);
-    row.appendChild(info);
-    row.appendChild(voteBox);
-    row.appendChild(actions);
-
-
-    box.appendChild(row);
-
-  });
+  }).join("");
 
 }
 
+function deleteCandidate(id){
 
-function loadSettings(){
+  const candidates=getCandidates();
 
-  const settings=
-    getSettings();
+  const candidate=candidates.find(
+    c=>String(c.id)===String(id)
+  );
 
-  document.getElementById(
-    "voteMode"
-  ).value=
-    settings.mode||"closed";
+  if(!candidate) return;
 
-  document.getElementById(
-    "startTime"
-  ).value=
-    settings.start||"";
+  if(!confirm(`هل تريد حذف ${candidate.name}؟`)) return;
 
-  document.getElementById(
-    "endTime"
-  ).value=
-    settings.end||"";
+  const newCandidates=candidates.filter(
+    c=>String(c.id)!==String(id)
+  );
 
-}
+  saveCandidates(newCandidates);
 
+  const votes=getVotes();
 
-function loadDashboard(){
+  delete votes[id];
 
-  loadSettings();
+  saveVotes(votes);
+
   renderCandidates();
   updateStats();
 
-}
-
-
-if(
-  sessionStorage.getItem(
-    "adminLoggedIn"
-  )==="true"
-){
-
-  document.getElementById(
-    "loginPage"
-  ).style.display="none";
-
-  document.getElementById(
-    "dashboard"
-  ).style.display="block";
-
-  loadDashboard();
+  showToast("تم حذف الشخص.");
 
 }
 
+function resetCandidateVotes(id){
 
-setInterval(()=>{
+  const candidates=getCandidates();
 
-  if(
-    sessionStorage.getItem(
-      "adminLoggedIn"
-    )==="true"
-  ){
+  const candidate=candidates.find(
+    c=>String(c.id)===String(id)
+  );
+
+  if(!candidate) return;
+
+  if(!confirm(`هل تريد تصفير تصويتات ${candidate.name}؟`)) return;
+
+  const votes=getVotes();
+
+  votes[id]=0;
+
+  saveVotes(votes);
+
+  renderCandidates();
+  updateStats();
+
+  showToast("تم تصفير التصويتات.");
+
+}
+
+function resetAllVotes(){
+
+  if(!confirm("هل تريد تصفير جميع التصويتات؟")) return;
+
+  const candidates=getCandidates();
+  const votes={};
+
+  candidates.forEach(candidate=>{
+    votes[candidate.id]=0;
+  });
+
+  saveVotes(votes);
+
+  localStorage.removeItem("votedCandidate");
+
+  renderCandidates();
+  updateStats();
+
+  showToast("تم تصفير جميع التصويتات.");
+
+}
+
+function updateStats(){
+
+  const candidates=getCandidates();
+  const votes=getVotes();
+  const settings=getSettings();
+
+  let total=0;
+
+  candidates.forEach(candidate=>{
+    total+=Number(votes[candidate.id]||0);
+  });
+
+  document.getElementById("statCandidates").textContent=
+    candidates.length;
+
+  document.getElementById("statVotes").textContent=
+    total;
+
+  document.getElementById("statStatus").textContent=
+    settings.open!==false ? "مفتوح" : "مغلق";
+
+}
+
+function openHeart(){
+
+  document.getElementById("heartOverlay").style.display="flex";
+
+  setTimeout(()=>{
+    document.getElementById("heartName").focus();
+  },50);
+
+}
+
+function closeHeart(){
+
+  document.getElementById("heartOverlay").style.display="none";
+
+}
+
+function addExtraVotes(){
+
+  const name=document
+    .getElementById("heartName")
+    .value
+    .trim();
+
+  const amount=Number(
+    document.getElementById("heartVotes").value
+  );
+
+  if(!name){
+
+    showToast("اكتب اسم الشخص.");
+    return;
+
+  }
+
+  if(!Number.isInteger(amount)||amount<=0){
+
+    showToast("اكتب عدد تصويتات صحيح.");
+    return;
+
+  }
+
+  const candidates=getCandidates();
+
+  const candidate=candidates.find(c=>
+    String(c.name)
+      .trim()
+      .toLowerCase()===name.toLowerCase()
+  );
+
+  if(!candidate){
+
+    showToast("لم يتم العثور على هذا الشخص.");
+    return;
+
+  }
+
+  const votes=getVotes();
+
+  votes[candidate.id]=
+    Number(votes[candidate.id]||0)+amount;
+
+  saveVotes(votes);
+
+  document.getElementById("heartName").value="";
+  document.getElementById("heartVotes").value="";
+
+  closeHeart();
+
+  renderCandidates();
+  updateStats();
+
+  showToast(
+    `تمت إضافة ${amount} تصويت للشخص ${candidate.name}.`
+  );
+
+}
+
+function showToast(message){
+
+  const toast=document.getElementById("toast");
+
+  toast.textContent=message;
+  toast.style.display="block";
+
+  clearTimeout(window.toastTimer);
+
+  window.toastTimer=setTimeout(()=>{
+    toast.style.display="none";
+  },3000);
+
+}
+
+function escapeHTML(value){
+
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+window.addEventListener("storage",()=>{
+
+  if(loggedIn){
 
     renderCandidates();
     updateStats();
 
   }
 
-},5000);
-
-
-window.addEventListener(
-  "storage",
-  ()=>{
-
-    if(
-      sessionStorage.getItem(
-        "adminLoggedIn"
-      )==="true"
-    ){
-
-      renderCandidates();
-      updateStats();
-
-    }
-
-  }
-);
+});
 
 </script>
 
