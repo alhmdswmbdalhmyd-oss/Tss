@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -7,332 +6,260 @@
 <title>منصة التصويت</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-
-:root{
-  --bg:#070812;
-  --card:#111426;
-  --card2:#181b32;
-  --purple:#8b5cf6;
-  --cyan:#22d3ee;
-  --text:#f8fafc;
-  --muted:#9ca3af;
-  --border:rgba(255,255,255,.09);
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Tahoma,Arial,sans-serif;
 }
 
 body{
-  font-family:Tahoma,Arial,sans-serif;
-  background:
-    radial-gradient(circle at 10% 5%,rgba(139,92,246,.25),transparent 28%),
-    radial-gradient(circle at 90% 15%,rgba(34,211,238,.15),transparent 25%),
-    var(--bg);
-  color:var(--text);
+  background:#080b18;
+  color:#fff;
   min-height:100vh;
 }
 
 header{
   position:sticky;
   top:0;
-  z-index:50;
-  background:rgba(7,8,18,.78);
-  backdrop-filter:blur(18px);
-  border-bottom:1px solid var(--border);
+  z-index:20;
+  background:rgba(8,11,24,.9);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-.nav{
-  width:min(1150px,92%);
-  min-height:75px;
+.header-inner{
+  width:min(1150px,94%);
   margin:auto;
+  min-height:75px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:12px;
+  gap:15px;
 }
 
 .logo{
   display:flex;
   align-items:center;
   gap:10px;
+  font-size:20px;
   font-weight:900;
 }
 
-.logoIcon{
-  width:43px;
-  height:43px;
+.logo-icon{
+  width:44px;
+  height:44px;
   border-radius:14px;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(135deg,var(--purple),var(--cyan));
-  box-shadow:0 0 28px rgba(139,92,246,.3);
-}
-
-.headerRight{
   display:flex;
   align-items:center;
-  gap:10px;
+  justify-content:center;
+  background:linear-gradient(135deg,#7c3aed,#06b6d4);
+  box-shadow:0 0 25px rgba(124,58,237,.35);
+  font-size:22px;
 }
 
 .status{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  padding:9px 13px;
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.04);
+  padding:9px 14px;
   border-radius:30px;
-  font-size:12px;
-}
-
-.dot{
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:#ef4444;
-}
-
-.dot.open{
-  background:#22c55e;
-  box-shadow:0 0 12px #22c55e;
-}
-
-.heartBtn{
-  width:44px;
-  height:44px;
-  border:1px solid rgba(244,63,94,.25);
-  border-radius:14px;
-  background:rgba(244,63,94,.08);
-  color:#fb7185;
-  font-size:22px;
-  cursor:pointer;
-  transition:.25s;
-}
-
-.heartBtn:hover{
-  transform:scale(1.06);
-  background:rgba(244,63,94,.15);
+  background:rgba(34,197,94,.1);
+  border:1px solid rgba(34,197,94,.3);
+  color:#4ade80;
+  font-size:13px;
 }
 
 .hero{
-  width:min(1150px,92%);
-  margin:55px auto 38px;
+  width:min(1150px,94%);
+  margin:45px auto 25px;
+  padding:55px 25px;
   text-align:center;
-}
-
-.badge{
-  display:inline-block;
-  padding:8px 16px;
   border-radius:30px;
-  background:rgba(139,92,246,.08);
-  border:1px solid rgba(139,92,246,.25);
-  color:#c4b5fd;
-  font-size:13px;
-  margin-bottom:20px;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(124,58,237,.28),transparent 35%),
+    radial-gradient(circle at 80% 80%,rgba(6,182,212,.2),transparent 35%),
+    #10152b;
+  border:1px solid rgba(255,255,255,.08);
 }
 
 .hero h1{
-  font-size:clamp(35px,7vw,68px);
-  line-height:1.15;
-  font-weight:1000;
-  background:linear-gradient(90deg,#fff,#c4b5fd,#67e8f9);
+  font-size:clamp(30px,6vw,58px);
+  margin-bottom:15px;
+}
+
+.hero h1 span{
+  background:linear-gradient(90deg,#a78bfa,#22d3ee);
   -webkit-background-clip:text;
   color:transparent;
 }
 
 .hero p{
-  max-width:650px;
-  margin:18px auto 0;
-  color:var(--muted);
+  color:#aab2c8;
+  font-size:16px;
   line-height:1.9;
-}
-
-.container{
-  width:min(1150px,92%);
+  max-width:650px;
   margin:auto;
-  padding-bottom:70px;
 }
 
-.sectionTitle{
+.section{
+  width:min(1150px,94%);
+  margin:35px auto 70px;
+}
+
+.section-title{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin:30px 0 20px;
+  margin-bottom:20px;
+  gap:10px;
 }
 
-.sectionTitle h2{font-size:25px}
-.sectionTitle span{color:var(--muted);font-size:13px}
+.section-title h2{
+  font-size:25px;
+}
 
-.grid{
+.section-title p{
+  color:#8d96ad;
+  font-size:13px;
+}
+
+.cards{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:22px;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;
 }
 
 .card{
+  position:relative;
   overflow:hidden;
-  background:linear-gradient(145deg,rgba(24,27,50,.96),rgba(12,14,28,.96));
-  border:1px solid var(--border);
-  border-radius:24px;
-  padding:14px;
-  transition:.3s;
-  box-shadow:0 20px 50px rgba(0,0,0,.2);
+  background:#11172c;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:25px;
+  padding:18px;
+  transition:.25s;
 }
 
 .card:hover{
-  transform:translateY(-6px);
-  border-color:rgba(139,92,246,.4);
+  transform:translateY(-5px);
+  border-color:rgba(34,211,238,.35);
+  box-shadow:0 15px 40px rgba(0,0,0,.25);
 }
 
-.cardImage{
+.person-image{
   width:100%;
-  height:230px;
-  object-fit:cover;
-  border-radius:17px;
-  background:#0b0d19;
+  height:220px;
+  border-radius:19px;
+  overflow:hidden;
+  background:#1b223c;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:16px;
 }
 
-.cardBody{padding:17px 5px 5px}
+.person-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.no-image{
+  font-size:55px;
+  color:#66708c;
+}
 
 .card h3{
   font-size:21px;
-  margin-bottom:9px;
+  margin-bottom:7px;
 }
 
 .card p{
-  color:var(--muted);
+  color:#8f99b2;
+  font-size:13px;
   line-height:1.7;
-  min-height:48px;
-  font-size:14px;
+  min-height:45px;
+  margin-bottom:16px;
 }
 
-.voteBtn{
+.vote-btn{
   width:100%;
-  margin-top:17px;
-  padding:14px;
   border:0;
-  border-radius:14px;
+  border-radius:15px;
+  padding:14px;
   color:#fff;
-  background:linear-gradient(135deg,var(--purple),#6d28d9);
-  font-weight:900;
   font-size:16px;
+  font-weight:bold;
   cursor:pointer;
+  background:linear-gradient(90deg,#7c3aed,#06b6d4);
+  transition:.2s;
 }
 
-.voteBtn:disabled{
-  opacity:.55;
+.vote-btn:hover{
+  transform:scale(1.02);
+}
+
+.vote-btn:disabled{
   cursor:not-allowed;
+  opacity:.45;
+  transform:none;
 }
 
 .empty{
-  grid-column:1/-1;
   text-align:center;
-  padding:65px 20px;
-  border:1px dashed var(--border);
+  padding:60px 20px;
+  border:1px dashed rgba(255,255,255,.15);
   border-radius:25px;
-  color:var(--muted);
+  color:#8d96ad;
 }
 
 .notice{
   display:none;
-  margin:20px 0;
-  padding:15px;
+  position:fixed;
+  bottom:25px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:100;
+  background:#151c35;
+  border:1px solid rgba(255,255,255,.1);
   border-radius:15px;
+  padding:14px 20px;
+  box-shadow:0 15px 40px rgba(0,0,0,.4);
+  min-width:260px;
   text-align:center;
-  background:rgba(34,211,238,.08);
-  border:1px solid rgba(34,211,238,.2);
-  color:#a5f3fc;
 }
 
 footer{
-  border-top:1px solid var(--border);
-  padding:25px;
   text-align:center;
-  color:#6b7280;
+  padding:25px;
+  color:#606a83;
   font-size:12px;
 }
 
-/* نافذة قسم القلب */
-.heartOverlay{
-  position:fixed;
-  inset:0;
-  z-index:100;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  background:rgba(0,0,0,.7);
-  backdrop-filter:blur(10px);
-}
-
-.heartPanel{
-  width:min(430px,100%);
-  background:#111426;
-  border:1px solid rgba(244,63,94,.25);
-  border-radius:25px;
-  padding:25px;
-  box-shadow:0 30px 90px rgba(0,0,0,.55);
-}
-
-.heartHeader{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:22px;
-}
-
-.heartHeader h2{
-  font-size:20px;
-  color:#fb7185;
-}
-
-.closeHeart{
-  width:36px;
-  height:36px;
-  border:0;
-  border-radius:10px;
-  background:rgba(255,255,255,.06);
-  color:#fff;
-  font-size:20px;
-  cursor:pointer;
-}
-
-.heartPanel label{
-  display:block;
-  color:#d1d5db;
-  font-size:13px;
-  margin:15px 0 7px;
-}
-
-.heartPanel input{
-  width:100%;
-  padding:13px;
-  border-radius:12px;
-  border:1px solid var(--border);
-  outline:none;
-  background:#0b0e1c;
-  color:white;
-}
-
-.addVotesBtn{
-  width:100%;
-  margin-top:18px;
-  padding:14px;
-  border:0;
-  border-radius:13px;
-  background:linear-gradient(135deg,#f43f5e,#be123c);
-  color:white;
-  font-weight:900;
-  cursor:pointer;
-}
-
 @media(max-width:600px){
-  .nav{min-height:65px}
-  .logo{font-size:15px}
-  .logoIcon{width:38px;height:38px}
-  .status{font-size:10px;padding:8px}
-  .heartBtn{width:40px;height:40px}
-  .hero{margin-top:40px}
-  .grid{grid-template-columns:1fr}
-  .cardImage{height:250px}
+  .header-inner{
+    min-height:65px;
+  }
+
+  .logo{
+    font-size:16px;
+  }
+
+  .logo-icon{
+    width:39px;
+    height:39px;
+  }
+
+  .hero{
+    margin-top:25px;
+    padding:40px 18px;
+    border-radius:23px;
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .person-image{
+    height:240px;
+  }
 }
 </style>
 </head>
@@ -340,112 +267,52 @@ footer{
 <body>
 
 <header>
-  <div class="nav">
-
+  <div class="header-inner">
     <div class="logo">
-      <div class="logoIcon">✓</div>
+      <div class="logo-icon">✓</div>
       <span>منصة التصويت</span>
     </div>
 
-    <div class="headerRight">
-
-      <div class="status">
-        <span class="dot" id="statusDot"></span>
-        <span id="statusText">جاري التحميل...</span>
-      </div>
-
-      <button class="heartBtn" onclick="openHeart()" aria-label="زيادة التصويتات">
-        ♥
-      </button>
-
-    </div>
+    <div id="status" class="status">جاري التحميل...</div>
   </div>
 </header>
 
-<section class="hero">
-  <div class="badge">✦ صوتك يصنع الفرق</div>
+<main>
 
-  <h1>اختر مرشحك</h1>
+  <section class="hero">
+    <h1>صوّت لمن <span>تراه مناسبًا</span></h1>
+    <p>
+      اختر الشخص الذي ترغب في التصويت له واضغط على زر التصويت.
+      يمكنك التصويت مرة واحدة فقط من هذا الجهاز.
+    </p>
+  </section>
 
-  <p>
-    شارك بصوتك واختر المرشح الذي تراه مناسبًا.
-    التصويت سريع وبسيط.
-  </p>
-</section>
+  <section class="section">
+    <div class="section-title">
+      <h2>المرشحون</h2>
+      <p id="candidateCount">0 مرشح</p>
+    </div>
 
-<main class="container">
-
-  <div id="notice" class="notice"></div>
-
-  <div class="sectionTitle">
-    <h2>المرشحون</h2>
-    <span id="candidateCount">0 مرشح</span>
-  </div>
-
-  <div id="candidates" class="grid"></div>
+    <div id="cards" class="cards"></div>
+  </section>
 
 </main>
 
+<div id="notice" class="notice"></div>
+
 <footer>
-  منصة التصويت © 2026
+  جميع الحقوق محفوظة © منصة التصويت
 </footer>
 
-
-<!-- قسم القلب الخاص بك -->
-<div id="heartOverlay" class="heartOverlay">
-
-  <div class="heartPanel">
-
-    <div class="heartHeader">
-      <h2>♥ زيادة التصويتات</h2>
-
-      <button
-        class="closeHeart"
-        onclick="closeHeart()"
-      >×</button>
-    </div>
-
-    <label>اسم الشخص</label>
-
-    <input
-      id="heartName"
-      type="text"
-      placeholder="اكتب اسم الشخص"
-    >
-
-    <label>عدد التصويتات</label>
-
-    <input
-      id="heartVotes"
-      type="number"
-      min="1"
-      placeholder="مثال: 10"
-    >
-
-    <button
-      class="addVotesBtn"
-      onclick="addExtraVotes()"
-    >
-      إضافة التصويتات
-    </button>
-
-  </div>
-
-</div>
-
-
 <script>
-
-const CANDIDATES_KEY="candidates";
-const VOTES_KEY="votes";
-const SETTINGS_KEY="voteSettings";
-const VOTED_KEY="votedCandidate";
+const CANDIDATES_KEY = "candidates";
+const VOTES_KEY = "votes";
+const SETTINGS_KEY = "voteSettings";
+const VOTED_KEY = "votedCandidate";
 
 function getCandidates(){
   try{
-    return JSON.parse(
-      localStorage.getItem(CANDIDATES_KEY)
-    ) || [];
+    return JSON.parse(localStorage.getItem(CANDIDATES_KEY)) || [];
   }catch(e){
     return [];
   }
@@ -453,9 +320,7 @@ function getCandidates(){
 
 function getVotes(){
   try{
-    return JSON.parse(
-      localStorage.getItem(VOTES_KEY)
-    ) || {};
+    return JSON.parse(localStorage.getItem(VOTES_KEY)) || {};
   }catch(e){
     return {};
   }
@@ -463,380 +328,167 @@ function getVotes(){
 
 function getSettings(){
   try{
-    return JSON.parse(
-      localStorage.getItem(SETTINGS_KEY)
-    ) || {
-      mode:"open",
+    return JSON.parse(localStorage.getItem(SETTINGS_KEY)) || {
+      open:true,
       start:"",
       end:""
     };
   }catch(e){
     return {
-      mode:"open",
+      open:true,
       start:"",
       end:""
     };
   }
 }
 
-function votingIsOpen(){
-
+function isVotingOpen(){
   const settings=getSettings();
 
-  if(settings.mode==="open") return true;
+  if(settings.open===false) return false;
 
-  if(settings.mode==="closed") return false;
+  const now=new Date();
 
-  if(settings.mode==="auto"){
-
-    const now=new Date();
-
-    if(
-      settings.start &&
-      now < new Date(settings.start)
-    ){
-      return false;
-    }
-
-    if(
-      settings.end &&
-      now > new Date(settings.end)
-    ){
-      return false;
-    }
-
-    return true;
+  if(settings.start){
+    const start=new Date(settings.start);
+    if(now<start) return false;
   }
 
-  return false;
-}
-
-function updateStatus(){
-
-  const open=votingIsOpen();
-
-  const dot=document.getElementById("statusDot");
-  const text=document.getElementById("statusText");
-
-  if(open){
-
-    dot.classList.add("open");
-    text.textContent="التصويت مفتوح";
-
-  }else{
-
-    dot.classList.remove("open");
-    text.textContent="التصويت مغلق";
-
+  if(settings.end){
+    const end=new Date(settings.end);
+    if(now>end) return false;
   }
+
+  return true;
 }
 
 function showNotice(message){
+  const notice=document.getElementById("notice");
+  notice.textContent=message;
+  notice.style.display="block";
 
-  const box=document.getElementById("notice");
+  clearTimeout(window.noticeTimer);
 
-  box.textContent=message;
-  box.style.display="block";
-
-  setTimeout(()=>{
-    box.style.display="none";
-  },3500);
-}
-
-function createPlaceholder(name){
-
-  const text=encodeURIComponent(name||"مرشح");
-
-  return `data:image/svg+xml;charset=UTF-8,
-  <svg xmlns="http://www.w3.org/2000/svg" width="800" height="500">
-  <rect width="100%" height="100%" fill="%23111426"/>
-  <text x="50%" y="50%" dominant-baseline="middle"
-  text-anchor="middle" fill="%23a78bfa"
-  font-size="45" font-family="Arial">${text}</text>
-  </svg>`;
+  window.noticeTimer=setTimeout(()=>{
+    notice.style.display="none";
+  },3000);
 }
 
 function vote(id){
-
-  if(!votingIsOpen()){
-
+  if(!isVotingOpen()){
     showNotice("التصويت مغلق حاليًا.");
     return;
-
   }
 
-  const alreadyVoted=
-    localStorage.getItem(VOTED_KEY);
+  const alreadyVoted=localStorage.getItem(VOTED_KEY);
 
   if(alreadyVoted){
-
-    showNotice(
-      "لقد قمت بالتصويت مسبقًا من هذا الجهاز."
-    );
-
+    showNotice("لقد قمت بالتصويت مسبقًا من هذا الجهاز.");
     return;
   }
 
   const candidates=getCandidates();
+  const candidate=candidates.find(c=>String(c.id)===String(id));
 
-  if(!candidates.some(
-    c=>String(c.id)===String(id)
-  )){
-
-    showNotice("المرشح غير موجود.");
+  if(!candidate){
+    showNotice("هذا المرشح غير موجود.");
     return;
-
   }
 
   const votes=getVotes();
 
   votes[id]=Number(votes[id]||0)+1;
 
-  localStorage.setItem(
-    VOTES_KEY,
-    JSON.stringify(votes)
-  );
+  localStorage.setItem(VOTES_KEY,JSON.stringify(votes));
+  localStorage.setItem(VOTED_KEY,String(id));
 
-  localStorage.setItem(
-    VOTED_KEY,
-    String(id)
-  );
+  showNotice("تم تسجيل تصويتك بنجاح ✓");
 
-  showNotice("تم تسجيل صوتك بنجاح ✓");
-
-  renderCandidates();
+  render();
 }
 
-function renderCandidates(){
-
-  const box=document.getElementById("candidates");
+function render(){
+  const cards=document.getElementById("cards");
+  const count=document.getElementById("candidateCount");
+  const status=document.getElementById("status");
 
   const candidates=getCandidates();
-
   const voted=localStorage.getItem(VOTED_KEY);
+  const open=isVotingOpen();
 
-  document.getElementById("candidateCount")
-    .textContent=`${candidates.length} مرشح`;
+  count.textContent=`${candidates.length} مرشح`;
 
-  if(!candidates.length){
+  if(open){
+    status.textContent="التصويت مفتوح";
+    status.style.color="#4ade80";
+    status.style.borderColor="rgba(34,197,94,.3)";
+    status.style.background="rgba(34,197,94,.1)";
+  }else{
+    status.textContent="التصويت مغلق";
+    status.style.color="#fb7185";
+    status.style.borderColor="rgba(244,63,94,.3)";
+    status.style.background="rgba(244,63,94,.1)";
+  }
 
-    box.innerHTML=`
+  if(candidates.length===0){
+    cards.innerHTML=`
       <div class="empty">
-        <div style="font-size:45px">🗳️</div>
-        <br>
-        <h3>لا يوجد مرشحون حتى الآن</h3>
-        <br>
-        أضف المرشحين من لوحة الإدارة.
+        لا يوجد مرشحون حاليًا.
       </div>
     `;
-
     return;
   }
 
-  const open=votingIsOpen();
+  cards.innerHTML=candidates.map(candidate=>{
 
-  box.innerHTML="";
+    const image=candidate.image
+      ? `<img src="${candidate.image}" alt="${escapeHTML(candidate.name)}">`
+      : `<div class="no-image">👤</div>`;
 
-  candidates.forEach(candidate=>{
+    const disabled=!open || voted;
 
-    const card=document.createElement("article");
+    return`
+      <article class="card">
+        <div class="person-image">
+          ${image}
+        </div>
 
-    card.className="card";
+        <h3>${escapeHTML(candidate.name||"بدون اسم")}</h3>
 
-    const image=document.createElement("img");
+        <p>
+          ${escapeHTML(candidate.description||"مرشح في منصة التصويت")}
+        </p>
 
-    image.className="cardImage";
-    image.src=
-      candidate.image ||
-      createPlaceholder(candidate.name);
-
-    image.alt=candidate.name;
-
-    const body=document.createElement("div");
-
-    body.className="cardBody";
-
-    const title=document.createElement("h3");
-
-    title.textContent=candidate.name;
-
-    const desc=document.createElement("p");
-
-    desc.textContent=
-      candidate.description ||
-      "مرشح في هذه المسابقة";
-
-    const button=document.createElement("button");
-
-    button.className="voteBtn";
-
-    const selected=
-      voted &&
-      String(voted)===String(candidate.id);
-
-    if(selected){
-
-      button.textContent=
-        "✓ تم التصويت لهذا المرشح";
-
-      button.disabled=true;
-
-    }else if(voted){
-
-      button.textContent=
-        "تم التصويت مسبقًا";
-
-      button.disabled=true;
-
-    }else if(!open){
-
-      button.textContent=
-        "التصويت مغلق";
-
-      button.disabled=true;
-
-    }else{
-
-      button.textContent="صوّت الآن";
-
-      button.onclick=()=>{
-        vote(candidate.id);
-      };
-
-    }
-
-    body.appendChild(title);
-    body.appendChild(desc);
-    body.appendChild(button);
-
-    card.appendChild(image);
-    card.appendChild(body);
-
-    box.appendChild(card);
-
-  });
+        <button
+          class="vote-btn"
+          onclick="vote('${String(candidate.id).replace(/'/g,"\\'")}')"
+          ${disabled?"disabled":""}
+        >
+          ${voted
+            ? "تم التصويت من هذا الجهاز"
+            : open
+              ? "صوّت الآن"
+              : "التصويت مغلق"}
+        </button>
+      </article>
+    `;
+  }).join("");
 }
 
-
-/* فتح قسم القلب */
-function openHeart(){
-
-  document.getElementById(
-    "heartOverlay"
-  ).style.display="flex";
-
-  document.getElementById(
-    "heartName"
-  ).focus();
+function escapeHTML(value){
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 }
 
+window.addEventListener("storage",render);
 
-/* إغلاق قسم القلب */
-function closeHeart(){
+render();
 
-  document.getElementById(
-    "heartOverlay"
-  ).style.display="none";
-
-}
-
-
-/* زيادة التصويتات من قسم القلب */
-function addExtraVotes(){
-
-  const name=
-    document.getElementById(
-      "heartName"
-    ).value.trim();
-
-  const amount=
-    Number(
-      document.getElementById(
-        "heartVotes"
-      ).value
-    );
-
-  if(!name){
-
-    showNotice("اكتب اسم الشخص.");
-    return;
-
-  }
-
-  if(!amount || amount<1){
-
-    showNotice("اكتب عدد تصويتات صحيح.");
-    return;
-
-  }
-
-  const candidates=getCandidates();
-
-  const candidate=candidates.find(
-    c=>
-      c.name.trim().toLowerCase()===
-      name.toLowerCase()
-  );
-
-  if(!candidate){
-
-    showNotice("لم يتم العثور على هذا الشخص.");
-    return;
-
-  }
-
-  const votes=getVotes();
-
-  votes[candidate.id]=
-    Number(votes[candidate.id]||0)+amount;
-
-  localStorage.setItem(
-    VOTES_KEY,
-    JSON.stringify(votes)
-  );
-
-  document.getElementById("heartName").value="";
-  document.getElementById("heartVotes").value="";
-
-  closeHeart();
-
-  showNotice(
-    `تمت إضافة ${amount} تصويتات لـ ${candidate.name} ✓`
-  );
-
-}
-
-
-/* الضغط خارج النافذة يغلقها */
-document.getElementById(
-  "heartOverlay"
-).addEventListener("click",function(e){
-
-  if(e.target===this){
-    closeHeart();
-  }
-
-});
-
-
-renderCandidates();
-updateStatus();
-
-setInterval(()=>{
-
-  renderCandidates();
-  updateStatus();
-
-},5000);
-
-window.addEventListener(
-  "storage",
-  ()=>{
-    renderCandidates();
-    updateStatus();
-  }
-);
-
+setInterval(render,1000);
 </script>
 
 </body>
