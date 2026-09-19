@@ -1,4 +1,4 @@
-tml>
+
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -21,8 +21,6 @@ tml>
   --text:#f8fafc;
   --muted:#9ca3af;
   --border:rgba(255,255,255,.09);
-  --red:#ef4444;
-  --green:#22c55e;
 }
 
 body{
@@ -59,8 +57,6 @@ header{
   gap:12px;
   font-size:20px;
   font-weight:900;
-  cursor:pointer;
-  user-select:none;
 }
 
 .logoIcon{
@@ -258,169 +254,6 @@ header{
   text-align:center;
 }
 
-/* =========================
-   لوحة الإدارة
-========================= */
-
-.adminPanel{
-  display:none;
-  width:min(1150px,92%);
-  margin:30px auto;
-  padding:25px;
-  border:1px solid rgba(139,92,246,.35);
-  border-radius:25px;
-  background:linear-gradient(
-    145deg,
-    rgba(23,26,49,.98),
-    rgba(10,12,25,.98)
-  );
-  box-shadow:0 25px 70px rgba(0,0,0,.35);
-}
-
-.adminPanel.active{
-  display:block;
-}
-
-.adminHeader{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
-  margin-bottom:25px;
-}
-
-.adminHeader h2{
-  font-size:25px;
-}
-
-.adminHeader p{
-  color:var(--muted);
-  font-size:13px;
-  margin-top:6px;
-}
-
-.closeAdmin{
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.05);
-  color:white;
-  border-radius:12px;
-  padding:10px 15px;
-  cursor:pointer;
-}
-
-.adminGrid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-}
-
-.adminBox{
-  background:rgba(255,255,255,.035);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:20px;
-}
-
-.adminBox h3{
-  margin-bottom:16px;
-}
-
-.adminBox label{
-  display:block;
-  color:#cbd5e1;
-  font-size:13px;
-  margin-bottom:8px;
-}
-
-.adminBox input,
-.adminBox select{
-  width:100%;
-  padding:13px;
-  border-radius:12px;
-  border:1px solid var(--border);
-  outline:none;
-  background:#0b0d19;
-  color:white;
-  margin-bottom:12px;
-  font-family:inherit;
-}
-
-.adminButtons{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
-
-.adminBtn{
-  border:0;
-  border-radius:12px;
-  padding:12px 17px;
-  cursor:pointer;
-  color:white;
-  font-weight:800;
-  background:linear-gradient(135deg,var(--purple),#6d28d9);
-}
-
-.adminBtn.red{
-  background:linear-gradient(135deg,#ef4444,#b91c1c);
-}
-
-.adminBtn.green{
-  background:linear-gradient(135deg,#22c55e,#15803d);
-}
-
-.adminCandidates{
-  margin-top:20px;
-  display:grid;
-  gap:10px;
-}
-
-.adminCandidate{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding:14px;
-  border-radius:15px;
-  background:rgba(255,255,255,.04);
-  border:1px solid var(--border);
-}
-
-.adminCandidateInfo{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  min-width:0;
-}
-
-.adminCandidateInfo img{
-  width:50px;
-  height:50px;
-  object-fit:cover;
-  border-radius:12px;
-}
-
-.adminCandidateInfo strong{
-  display:block;
-  margin-bottom:5px;
-}
-
-.voteNumber{
-  color:#a5f3fc;
-  font-size:12px;
-}
-
-.deleteBtn{
-  border:0;
-  background:rgba(239,68,68,.13);
-  color:#fca5a5;
-  border:1px solid rgba(239,68,68,.25);
-  padding:9px 12px;
-  border-radius:10px;
-  cursor:pointer;
-  white-space:nowrap;
-}
-
 footer{
   border-top:1px solid var(--border);
   text-align:center;
@@ -429,8 +262,7 @@ footer{
   font-size:12px;
 }
 
-@media(max-width:700px){
-
+@media(max-width:600px){
   .nav{
     min-height:65px;
   }
@@ -464,18 +296,6 @@ footer{
   .cardImage{
     height:250px;
   }
-
-  .adminGrid{
-    grid-template-columns:1fr;
-  }
-
-  .adminHeader{
-    align-items:flex-start;
-  }
-
-  .adminCandidate{
-    align-items:flex-start;
-  }
 }
 </style>
 </head>
@@ -484,8 +304,7 @@ footer{
 
 <header>
   <div class="nav">
-
-    <div class="logo" id="adminTrigger" title="">
+    <div class="logo">
       <div class="logoIcon">✓</div>
       <span>منصة التصويت</span>
     </div>
@@ -494,101 +313,16 @@ footer{
       <span class="dot" id="statusDot"></span>
       <span id="statusText">جاري التحميل...</span>
     </div>
-
   </div>
 </header>
 
 <section class="hero">
   <div class="badge">✦ صوتك يصنع الفرق</div>
-
   <h1>اختر مرشحك</h1>
-
   <p>
     شارك بصوتك واختر المرشح الذي تراه مناسبًا.
     التصويت بسيط وسريع وآمن من خلال جهازك.
   </p>
-</section>
-
-<!-- =========================
-     لوحة الإدارة المخفية
-========================= -->
-
-<section class="adminPanel" id="adminPanel">
-
-  <div class="adminHeader">
-
-    <div>
-      <h2>⚙️ إدارة التصويت</h2>
-      <p>إدارة المرشحين والأصوات</p>
-    </div>
-
-    <button class="closeAdmin" onclick="closeAdmin()">
-      إغلاق
-    </button>
-
-  </div>
-
-  <div class="adminGrid">
-
-    <!-- زيادة التصويت -->
-
-    <div class="adminBox">
-
-      <h3>➕ زيادة التصويت</h3>
-
-      <label>اختر المرشح</label>
-
-      <select id="voteCandidate"></select>
-
-      <label>عدد الأصوات التي تريد إضافتها</label>
-
-      <input
-        type="number"
-        id="voteAmount"
-        min="1"
-        value="1"
-      >
-
-      <div class="adminButtons">
-
-        <button
-          class="adminBtn green"
-          onclick="addVotes()"
-        >
-          زيادة التصويت
-        </button>
-
-      </div>
-
-    </div>
-
-    <!-- حذف المرشح -->
-
-    <div class="adminBox">
-
-      <h3>🗑️ حذف مرشح</h3>
-
-      <label>اختر المرشح</label>
-
-      <select id="deleteCandidate"></select>
-
-      <div class="adminButtons">
-
-        <button
-          class="adminBtn red"
-          onclick="deleteSelectedCandidate()"
-        >
-          حذف المرشح
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-  <div class="adminCandidates" id="adminCandidates"></div>
-
 </section>
 
 <main class="container">
@@ -596,13 +330,8 @@ footer{
   <div id="notice" class="notice"></div>
 
   <div class="sectionTitle">
-
     <h2>المرشحون</h2>
-
-    <span id="candidateCount">
-      0 مرشح
-    </span>
-
+    <span id="candidateCount">0 مرشح</span>
   </div>
 
   <div id="candidates" class="grid"></div>
@@ -614,86 +343,44 @@ footer{
 </footer>
 
 <script>
-
 const CANDIDATES_KEY = "candidates";
 const VOTES_KEY = "votes";
 const SETTINGS_KEY = "voteSettings";
 const VOTED_KEY = "votedCandidate";
 
-/* =========================
-   قراءة المرشحين
-========================= */
-
 function getCandidates(){
-
   try{
-
-    return JSON.parse(
-      localStorage.getItem(CANDIDATES_KEY)
-    ) || [];
-
+    return JSON.parse(localStorage.getItem(CANDIDATES_KEY)) || [];
   }catch(e){
-
     return [];
-
   }
-
 }
-
-/* =========================
-   قراءة الأصوات
-========================= */
 
 function getVotes(){
-
   try{
-
-    return JSON.parse(
-      localStorage.getItem(VOTES_KEY)
-    ) || {};
-
+    return JSON.parse(localStorage.getItem(VOTES_KEY)) || {};
   }catch(e){
-
     return {};
-
   }
-
 }
 
-/* =========================
-   إعدادات التصويت
-========================= */
-
 function getSettings(){
-
   try{
-
-    return JSON.parse(
-      localStorage.getItem(SETTINGS_KEY)
-    ) || {
+    return JSON.parse(localStorage.getItem(SETTINGS_KEY)) || {
       mode:"open",
       start:"",
       end:""
     };
-
   }catch(e){
-
     return {
       mode:"open",
       start:"",
       end:""
     };
-
   }
-
 }
 
-/* =========================
-   حالة التصويت
-========================= */
-
 function getVotingState(){
-
   const settings = getSettings();
   const now = new Date();
 
@@ -706,753 +393,199 @@ function getVotingState(){
   }
 
   if(settings.mode === "auto"){
-
     if(settings.start){
-
       const start = new Date(settings.start);
-
-      if(now < start){
-        return false;
-      }
-
+      if(now < start) return false;
     }
 
     if(settings.end){
-
       const end = new Date(settings.end);
-
-      if(now > end){
-        return false;
-      }
-
+      if(now > end) return false;
     }
 
     return true;
-
   }
 
   return false;
-
 }
 
-/* =========================
-   حماية النص
-========================= */
-
 function escapeHtml(text){
-
   return String(text ?? "")
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
     .replace(/>/g,"&gt;")
     .replace(/"/g,"&quot;")
     .replace(/'/g,"&#039;");
-
 }
-
-/* =========================
-   تحديث حالة التصويت
-========================= */
 
 function updateStatus(){
-
   const open = getVotingState();
-
-  const dot =
-    document.getElementById("statusDot");
-
-  const text =
-    document.getElementById("statusText");
+  const dot = document.getElementById("statusDot");
+  const text = document.getElementById("statusText");
 
   if(open){
-
     dot.classList.add("open");
-
-    text.textContent =
-      "التصويت مفتوح";
-
+    text.textContent = "التصويت مفتوح";
   }else{
-
     dot.classList.remove("open");
-
-    text.textContent =
-      "التصويت مغلق";
-
+    text.textContent = "التصويت مغلق";
   }
-
 }
 
-/* =========================
-   رسالة
-========================= */
-
 function showNotice(message){
-
-  const notice =
-    document.getElementById("notice");
-
+  const notice = document.getElementById("notice");
   notice.textContent = message;
-
   notice.style.display = "block";
 
   setTimeout(()=>{
-
     notice.style.display = "none";
-
   },4000);
-
 }
 
-/* =========================
-   تصويت المستخدم
-========================= */
-
 function vote(id){
-
   if(!getVotingState()){
-
-    showNotice(
-      "التصويت مغلق حاليًا."
-    );
-
+    showNotice("التصويت مغلق حاليًا.");
     return;
-
   }
 
-  const alreadyVoted =
-    localStorage.getItem(VOTED_KEY);
+  const alreadyVoted = localStorage.getItem(VOTED_KEY);
 
   if(alreadyVoted){
-
-    showNotice(
-      "لقد قمت بالتصويت مسبقًا من هذا الجهاز."
-    );
-
+    showNotice("لقد قمت بالتصويت مسبقًا من هذا الجهاز.");
     return;
-
   }
 
-  const candidates =
-    getCandidates();
+  const candidates = getCandidates();
 
-  if(!candidates.some(
-    c => String(c.id) === String(id)
-  )){
-
-    showNotice(
-      "هذا المرشح غير موجود."
-    );
-
+  if(!candidates.some(c => String(c.id) === String(id))){
+    showNotice("هذا المرشح غير موجود.");
     return;
-
   }
 
-  const votes =
-    getVotes();
+  const votes = getVotes();
 
   if(!votes[id]){
     votes[id] = 0;
   }
 
   votes[id]++;
+  localStorage.setItem(VOTES_KEY,JSON.stringify(votes));
+  localStorage.setItem(VOTED_KEY,String(id));
 
-  localStorage.setItem(
-    VOTES_KEY,
-    JSON.stringify(votes)
-  );
-
-  localStorage.setItem(
-    VOTED_KEY,
-    String(id)
-  );
-
-  showNotice(
-    "تم تسجيل صوتك بنجاح ✓"
-  );
-
+  showNotice("تم تسجيل صوتك بنجاح ✓");
   renderCandidates();
-  renderAdmin();
-
 }
 
-/* =========================
-   عرض المرشحين
-========================= */
-
 function renderCandidates(){
+  const box = document.getElementById("candidates");
+  const candidates = getCandidates();
+  const open = getVotingState();
+  const voted = localStorage.getItem(VOTED_KEY);
+  const votes = getVotes();
 
-  const box =
-    document.getElementById("candidates");
-
-  const candidates =
-    getCandidates();
-
-  const open =
-    getVotingState();
-
-  const voted =
-    localStorage.getItem(VOTED_KEY);
-
-  document.getElementById(
-    "candidateCount"
-  ).textContent =
+  document.getElementById("candidateCount").textContent =
     `${candidates.length} مرشح`;
 
   if(!candidates.length){
-
     box.innerHTML = `
-
-      <div
-        class="empty"
-        style="grid-column:1/-1"
-      >
-
-        <div class="emptyIcon">
-          🗳️
-        </div>
-
-        <h3>
-          لا يوجد مرشحون حتى الآن
-        </h3>
-
-        <p>
-          سيظهر المرشحون هنا عندما تتم إضافتهم من لوحة الإدارة.
-        </p>
-
+      <div class="empty" style="grid-column:1/-1">
+        <div class="emptyIcon">🗳️</div>
+        <h3>لا يوجد مرشحون حتى الآن</h3>
+        <p>سيظهر المرشحون هنا عندما تتم إضافتهم من لوحة الإدارة.</p>
       </div>
-
     `;
-
     return;
-
   }
 
-  const votes =
-    getVotes();
+  box.innerHTML = candidates.map(candidate => {
 
-  box.innerHTML =
-    candidates.map(candidate => {
+    const selected =
+      voted && String(voted) === String(candidate.id);
 
-      const selected =
-        voted &&
-        String(voted) ===
-        String(candidate.id);
+    let buttonText = "صوّت الآن";
 
-      let buttonText =
-        "صوّت الآن";
-
-      if(selected){
-
-        buttonText =
-          "✓ تم التصويت لهذا المرشح";
-
-      }else if(voted){
-
-        buttonText =
-          "تم التصويت مسبقًا";
-
-      }else if(!open){
-
-        buttonText =
-          "التصويت مغلق";
-
-      }
-
-      const voteCount =
-        Number(votes[candidate.id] || 0);
-
-      return `
-
-        <article class="card">
-
-          <img
-            class="cardImage"
-            src="${
-              candidate.image ||
-              createPlaceholder(candidate.name)
-            }"
-            alt="${escapeHtml(candidate.name)}"
-          >
-
-          <div class="cardBody">
-
-            <h3>
-              ${escapeHtml(candidate.name)}
-            </h3>
-
-            <p>
-              ${
-                escapeHtml(
-                  candidate.description ||
-                  "مرشح في هذه المسابقة"
-                )
-              }
-            </p>
-
-            <div style="
-              margin-top:10px;
-              color:#a5f3fc;
-              font-size:13px;
-            ">
-              عدد الأصوات: ${voteCount}
-            </div>
-
-            <button
-              class="voteBtn"
-              onclick="vote('${String(candidate.id).replace(/'/g,"\\'")}')"
-              ${(!open || voted) ? "disabled" : ""}
-            >
-              ${buttonText}
-            </button>
-
-          </div>
-
-        </article>
-
-      `;
-
-    }).join("");
-
-}
-
-/* =========================
-   صورة افتراضية
-========================= */
-
-function createPlaceholder(name){
-
-  const text =
-    encodeURIComponent(
-      name || "مرشح"
-    );
-
-  return `data:image/svg+xml;charset=UTF-8,
-
-  <svg xmlns="http://www.w3.org/2000/svg"
-    width="800"
-    height="500">
-
-    <rect
-      width="100%"
-      height="100%"
-      fill="%23111426"
-    />
-
-    <text
-      x="50%"
-      y="50%"
-      dominant-baseline="middle"
-      text-anchor="middle"
-      fill="%23a78bfa"
-      font-size="45"
-      font-family="Arial"
-    >
-      ${text}
-    </text>
-
-  </svg>`;
-
-}
-
-/* =========================
-   فتح لوحة الإدارة
-   الضغط على شعار المنصة
-========================= */
-
-let adminClicks = 0;
-let adminClickTimer;
-
-document
-  .getElementById("adminTrigger")
-  .addEventListener("click",()=>{
-
-    adminClicks++;
-
-    clearTimeout(adminClickTimer);
-
-    adminClickTimer =
-      setTimeout(()=>{
-
-        adminClicks = 0;
-
-      },800);
-
-    if(adminClicks >= 3){
-
-      adminClicks = 0;
-
-      openAdmin();
-
+    if(selected){
+      buttonText = "✓ تم التصويت لهذا المرشح";
+    }else if(voted){
+      buttonText = "تم التصويت مسبقًا";
+    }else if(!open){
+      buttonText = "التصويت مغلق";
     }
 
-  });
+    return `
+      <article class="card">
+        <img
+          class="cardImage"
+          src="${candidate.image || createPlaceholder(candidate.name)}"
+          alt="${escapeHtml(candidate.name)}"
+        >
 
-/* =========================
-   فتح الإدارة
-========================= */
+        <div class="cardBody">
+          <h3>${escapeHtml(candidate.name)}</h3>
 
-function openAdmin(){
+          <p>
+            ${escapeHtml(candidate.description || "مرشح في هذه المسابقة")}
+          </p>
 
-  const panel =
-    document.getElementById("adminPanel");
-
-  panel.classList.add("active");
-
-  renderAdmin();
-
-  panel.scrollIntoView({
-    behavior:"smooth",
-    block:"start"
-  });
-
-}
-
-/* =========================
-   إغلاق الإدارة
-========================= */
-
-function closeAdmin(){
-
-  document
-    .getElementById("adminPanel")
-    .classList.remove("active");
-
-}
-
-/* =========================
-   عرض قائمة الإدارة
-========================= */
-
-function renderAdmin(){
-
-  const candidates =
-    getCandidates();
-
-  const votes =
-    getVotes();
-
-  const voteSelect =
-    document.getElementById(
-      "voteCandidate"
-    );
-
-  const deleteSelect =
-    document.getElementById(
-      "deleteCandidate"
-    );
-
-  if(!voteSelect || !deleteSelect){
-    return;
-  }
-
-  if(!candidates.length){
-
-    voteSelect.innerHTML =
-      `<option value="">لا يوجد مرشحون</option>`;
-
-    deleteSelect.innerHTML =
-      `<option value="">لا يوجد مرشحون</option>`;
-
-  }else{
-
-    voteSelect.innerHTML =
-      candidates.map(candidate => `
-
-        <option value="${escapeHtml(candidate.id)}">
-
-          ${escapeHtml(candidate.name)}
-          — ${Number(votes[candidate.id] || 0)} صوت
-
-        </option>
-
-      `).join("");
-
-    deleteSelect.innerHTML =
-      candidates.map(candidate => `
-
-        <option value="${escapeHtml(candidate.id)}">
-
-          ${escapeHtml(candidate.name)}
-
-        </option>
-
-      `).join("");
-
-  }
-
-  const adminCandidates =
-    document.getElementById(
-      "adminCandidates"
-    );
-
-  adminCandidates.innerHTML =
-    candidates.map(candidate => {
-
-      const count =
-        Number(votes[candidate.id] || 0);
-
-      return `
-
-        <div class="adminCandidate">
-
-          <div class="adminCandidateInfo">
-
-            <img
-              src="${
-                candidate.image ||
-                createPlaceholder(candidate.name)
-              }"
-              alt="${escapeHtml(candidate.name)}"
-            >
-
-            <div>
-
-              <strong>
-                ${escapeHtml(candidate.name)}
-              </strong>
-
-              <span class="voteNumber">
-                ${count} صوت
-              </span>
-
-            </div>
-
+          <div style="
+            margin-top:10px;
+            color:#a5f3fc;
+            font-size:13px;
+          ">
+            عدد الأصوات: ${Number(votes[candidate.id] || 0)}
           </div>
 
           <button
-            class="deleteBtn"
-            onclick="deleteCandidate('${String(candidate.id).replace(/'/g,"\\'")}')"
+            class="voteBtn"
+            onclick="vote('${String(candidate.id).replace(/'/g,"\\'")}')"
+            ${(!open || voted) ? "disabled" : ""}
           >
-            حذف
+            ${buttonText}
           </button>
-
         </div>
-
-      `;
-
-    }).join("");
-
+      </article>
+    `;
+  }).join("");
 }
 
-/* =========================
-   زيادة الأصوات يدويًا
-========================= */
+function createPlaceholder(name){
+  const text = encodeURIComponent(name || "مرشح");
 
-function addVotes(){
-
-  const id =
-    document.getElementById(
-      "voteCandidate"
-    ).value;
-
-  const amount =
-    parseInt(
-      document.getElementById(
-        "voteAmount"
-      ).value,
-      10
-    );
-
-  if(!id){
-
-    showNotice(
-      "اختر مرشحًا أولًا."
-    );
-
-    return;
-
-  }
-
-  if(!Number.isInteger(amount) || amount < 1){
-
-    showNotice(
-      "أدخل عدد أصوات صحيح."
-    );
-
-    return;
-
-  }
-
-  const candidates =
-    getCandidates();
-
-  const candidate =
-    candidates.find(
-      c => String(c.id) === String(id)
-    );
-
-  if(!candidate){
-
-    showNotice(
-      "المرشح غير موجود."
-    );
-
-    return;
-
-  }
-
-  const votes =
-    getVotes();
-
-  if(!votes[id]){
-    votes[id] = 0;
-  }
-
-  votes[id] += amount;
-
-  localStorage.setItem(
-    VOTES_KEY,
-    JSON.stringify(votes)
-  );
-
-  showNotice(
-    `تمت إضافة ${amount} صوت إلى ${candidate.name} ✓`
-  );
-
-  renderCandidates();
-  renderAdmin();
-
+  return `data:image/svg+xml;charset=UTF-8,
+  <svg xmlns="http://www.w3.org/2000/svg" width="800" height="500">
+    <rect width="100%" height="100%" fill="%23111426"/>
+    <text x="50%" y="50%" dominant-baseline="middle"
+      text-anchor="middle" fill="%23a78bfa"
+      font-size="45" font-family="Arial">${text}</text>
+  </svg>`;
 }
 
-/* =========================
-   حذف المرشح
-========================= */
+/*
+  الإدارة الموجودة عندك تبقى كما هي.
+  هذه الصفحة فقط تقرأ نفس:
+  candidates
+  votes
+  voteSettings
 
-function deleteSelectedCandidate(){
-
-  const id =
-    document.getElementById(
-      "deleteCandidate"
-    ).value;
-
-  if(!id){
-
-    showNotice(
-      "اختر مرشحًا أولًا."
-    );
-
-    return;
-
-  }
-
-  deleteCandidate(id);
-
-}
-
-/* =========================
-   حذف مرشح بالكامل
-========================= */
-
-function deleteCandidate(id){
-
-  const candidates =
-    getCandidates();
-
-  const candidate =
-    candidates.find(
-      c => String(c.id) === String(id)
-    );
-
-  if(!candidate){
-
-    showNotice(
-      "المرشح غير موجود."
-    );
-
-    return;
-
-  }
-
-  const confirmed =
-    confirm(
-      `هل تريد حذف المرشح "${candidate.name}" نهائيًا؟`
-    );
-
-  if(!confirmed){
-    return;
-  }
-
-  const newCandidates =
-    candidates.filter(
-      c => String(c.id) !== String(id)
-    );
-
-  localStorage.setItem(
-    CANDIDATES_KEY,
-    JSON.stringify(newCandidates)
-  );
-
-  const votes =
-    getVotes();
-
-  delete votes[id];
-
-  localStorage.setItem(
-    VOTES_KEY,
-    JSON.stringify(votes)
-  );
-
-  const voted =
-    localStorage.getItem(VOTED_KEY);
-
-  if(voted &&
-     String(voted) === String(id)){
-
-    localStorage.removeItem(
-      VOTED_KEY
-    );
-
-  }
-
-  showNotice(
-    `تم حذف ${candidate.name} بنجاح.`
-  );
-
-  renderCandidates();
-  renderAdmin();
-
-}
-
-/* =========================
-   تشغيل الموقع
-========================= */
+  لذلك أي زيادة أصوات أو حذف مرشح
+  من لوحة الإدارة الموجودة عندك
+  ينعكس هنا مباشرة.
+*/
 
 renderCandidates();
 updateStatus();
 
 setInterval(()=>{
-
   updateStatus();
   renderCandidates();
-
-  if(
-    document
-      .getElementById("adminPanel")
-      .classList.contains("active")
-  ){
-
-    renderAdmin();
-
-  }
-
 },10000);
 
-/* =========================
-   مزامنة البيانات
-========================= */
-
-window.addEventListener(
-  "storage",
-  ()=>{
-
-    renderCandidates();
-    updateStat
-    renderAdmin();
-
-  }
-);
+window.addEventListener("storage",()=>{
+  renderCandidates();
+  updateStatus();
+});
 
 </script>
 
 </body>
-</html
+</html>
