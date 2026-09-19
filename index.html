@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>منصة التصويت</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="header">
+
+    <div class="logo">
+      🗳️ صوتك
+    </div>
+
+    <div id="statusBadge" class="status closed">
+      التصويت غير متاح
+    </div>
+
+  </header>
+
+
+  <main>
+
+    <section class="hero">
+
+      <span class="small-title">
+        منصة التصويت
+      </span>
+
+      <h1>
+        اختر من يستحق صوتك
+      </h1>
+
+      <p>
+        شارك في التصويت واختر المرشح الذي تراه مناسبًا.
+      </p>
+
+      <div id="timerBox" class="timer-box">
+        جاري تحميل موعد التصويت...
+      </div>
+
+    </section>
+
+
+    <section class="voting-section">
+
+      <div class="section-header">
+
+        <div>
+          <h2>المرشحون</h2>
+
+          <p id="candidateCount">
+            0 مرشح
+          </p>
+        </div>
+
+      </div>
+
+
+      <div id="candidates" class="candidates">
+
+        <div class="empty-state">
+
+          <div class="empty-icon">
+            ⭐
+          </div>
+
+          <h3>
+            لا يوجد مرشحون حاليًا
+          </h3>
+
+          <p>
+            سيتم إضافة المرشحين قريبًا.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <div id="message" class="message"></div>
+
+
+  <footer>
+    © 2026 منصة التصويت
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
