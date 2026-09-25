@@ -2,485 +2,313 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>لوحة المرشد</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEXO STORE — لوحة التحكم</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Tahoma,Arial,sans-serif;
-}
-
+*{box-sizing:border-box}
 body{
-  background:#080b18;
-  color:#fff;
-  min-height:100vh;
+  margin:0;
+  font-family:Arial,Tahoma,sans-serif;
+  background:#f5f7fa;
+  color:#172033
 }
-
-button,
-input,
-textarea{
-  font-family:inherit;
-}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
 
 .login{
   min-height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:20px;
+  padding:20px
 }
-
 .login-box{
-  width:min(430px,100%);
-  background:#11172c;
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:25px;
+  width:100%;
+  max-width:420px;
+  background:white;
   padding:30px;
-  box-shadow:0 20px 70px rgba(0,0,0,.35);
+  border-radius:24px;
+  box-shadow:0 15px 50px #0001
 }
-
-.login-logo{
-  width:65px;
-  height:65px;
-  margin:0 auto 20px;
-  border-radius:20px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:linear-gradient(135deg,#7c3aed,#06b6d4);
-  font-size:30px;
-  font-weight:bold;
-}
-
-.login-box h1{
+.logo{
+  font-size:28px;
+  font-weight:900;
   text-align:center;
-  margin-bottom:10px;
+  margin-bottom:8px
 }
+.muted{color:#788398}
 
-.login-box p{
-  text-align:center;
-  color:#8d96ad;
-  font-size:13px;
-  margin-bottom:25px;
-}
-
-.field{
-  margin-bottom:16px;
-}
-
-.field label{
-  display:block;
-  margin-bottom:8px;
-  color:#b8c0d3;
-  font-size:13px;
-}
-
-.field input,
-.field textarea{
+input,textarea,select{
   width:100%;
-  border:1px solid rgba(255,255,255,.1);
+  padding:13px 14px;
+  border:1px solid #dce2ea;
+  border-radius:12px;
   outline:none;
-  background:#0c1123;
-  color:#fff;
-  border-radius:13px;
-  padding:13px;
+  background:#fff;
+  margin-top:7px;
 }
-
-.field textarea{
-  resize:vertical;
-  min-height:90px;
+input:focus,textarea:focus,select:focus{
+  border-color:#111827
 }
+label{
+  display:block;
+  margin:15px 0;
+  font-weight:bold
+}
+textarea{min-height:100px;resize:vertical}
 
-.primary{
-  width:100%;
+.btn{
   border:0;
-  padding:14px;
-  border-radius:13px;
-  color:#fff;
-  font-size:15px;
-  font-weight:bold;
-  cursor:pointer;
-  background:linear-gradient(90deg,#7c3aed,#06b6d4);
+  padding:12px 18px;
+  border-radius:12px;
+  background:#111827;
+  color:white;
+  font-weight:bold
 }
-
-.error{
-  color:#fb7185;
-  text-align:center;
-  font-size:13px;
-  margin-top:12px;
-  min-height:18px;
+.btn:hover{opacity:.9}
+.btn.light{
+  background:#eef1f5;
+  color:#172033
 }
+.btn.danger{background:#dc2626}
+.btn.success{background:#16a34a}
 
-.dashboard{
-  display:none;
-}
+.hidden{display:none!important}
 
-.topbar{
+header{
+  background:#fff;
+  border-bottom:1px solid #e8ebf0;
   position:sticky;
   top:0;
-  z-index:30;
-  background:rgba(8,11,24,.92);
-  backdrop-filter:blur(15px);
-  border-bottom:1px solid rgba(255,255,255,.08);
+  z-index:10
 }
-
-.topbarInner{
-  width:min(1200px,94%);
-  min-height:75px;
+.header-inner{
+  max-width:1250px;
   margin:auto;
+  padding:15px 20px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:15px;
+  gap:15px
 }
-
-.adminBrand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-size:18px;
+.header-logo{
   font-weight:900;
+  font-size:23px
 }
-
-.logoIcon{
-  width:44px;
-  height:44px;
-  border-radius:14px;
+.header-actions{
   display:flex;
-  align-items:center;
-  justify-content:center;
-  background:linear-gradient(135deg,#7c3aed,#06b6d4);
-  box-shadow:0 0 25px rgba(124,58,237,.3);
-}
-
-.heartBtn{
-  width:44px;
-  height:44px;
-  border:1px solid rgba(244,114,182,.25);
-  border-radius:14px;
-  background:rgba(244,114,182,.08);
-  color:#fb7185;
-  font-size:22px;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.heartBtn:hover{
-  transform:scale(1.06);
-  background:rgba(244,114,182,.15);
-}
-
-.logout{
-  border:1px solid rgba(255,255,255,.1);
-  background:#11172c;
-  color:#cbd5e1;
-  padding:10px 15px;
-  border-radius:12px;
-  cursor:pointer;
+  gap:8px;
+  flex-wrap:wrap
 }
 
 .container{
-  width:min(1200px,94%);
-  margin:30px auto 70px;
-}
-
-.pageTitle{
-  margin-bottom:25px;
-}
-
-.pageTitle h1{
-  font-size:30px;
-  margin-bottom:7px;
-}
-
-.pageTitle p{
-  color:#8d96ad;
-  font-size:13px;
+  max-width:1250px;
+  margin:auto;
+  padding:25px 20px
 }
 
 .stats{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(5,1fr);
   gap:15px;
-  margin-bottom:25px;
+  margin-bottom:25px
 }
-
 .stat{
-  background:#11172c;
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:20px;
+  background:white;
+  border-radius:18px;
   padding:20px;
+  box-shadow:0 5px 20px #00000008
 }
-
-.stat span{
-  color:#8d96ad;
-  font-size:13px;
+.stat-title{
+  color:#7b8494;
+  font-size:14px
 }
-
-.stat strong{
-  display:block;
-  margin-top:8px;
+.stat-number{
   font-size:28px;
+  font-weight:900;
+  margin-top:8px
+}
+
+.tabs{
+  display:flex;
+  gap:8px;
+  overflow:auto;
+  margin-bottom:20px
+}
+.tab{
+  border:0;
+  padding:11px 18px;
+  background:#e9edf2;
+  border-radius:12px;
+  white-space:nowrap
+}
+.tab.active{
+  background:#111827;
+  color:white
+}
+
+.panel{
+  background:white;
+  border-radius:20px;
+  padding:22px;
+  margin-bottom:20px;
+  box-shadow:0 5px 20px #00000008
+}
+
+.panel-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:18px
+}
+.panel-head h2{
+  margin:0
+}
+
+.table-wrap{
+  overflow:auto
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:800px
+}
+th,td{
+  padding:13px 10px;
+  border-bottom:1px solid #edf0f4;
+  text-align:right
+}
+th{
+  color:#697386;
+  font-size:13px
+}
+
+.product-img{
+  width:55px;
+  height:55px;
+  object-fit:cover;
+  border-radius:12px;
+  background:#eee
 }
 
 .grid{
   display:grid;
-  grid-template-columns:350px 1fr;
-  gap:20px;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px
 }
 
-.panel{
-  background:#11172c;
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:22px;
-  padding:22px;
+.form-section{
+  border:1px solid #edf0f4;
+  padding:18px;
+  border-radius:16px;
+  margin-bottom:15px
 }
 
-.panel h2{
-  margin-bottom:20px;
-  font-size:19px;
+.form-section h3{
+  margin-top:0
 }
 
-.switchRow{
+.order-card{
+  border:1px solid #e8ebf0;
+  border-radius:16px;
+  padding:18px;
+  margin-bottom:15px
+}
+
+.order-top{
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  gap:10px;
-  padding:13px 0;
+  gap:15px;
+  flex-wrap:wrap
 }
 
-.switch{
-  width:52px;
-  height:28px;
-  border:0;
-  border-radius:30px;
-  background:#374151;
-  cursor:pointer;
-  position:relative;
-}
-
-.switch span{
-  width:22px;
-  height:22px;
-  position:absolute;
-  top:3px;
-  right:4px;
-  border-radius:50%;
-  background:#fff;
-  transition:.2s;
-}
-
-.switch.active{
-  background:#16a34a;
-}
-
-.switch.active span{
-  right:26px;
-}
-
-.small-btn{
-  border:1px solid rgba(255,255,255,.1);
-  background:#0c1123;
-  color:#fff;
-  padding:10px 13px;
-  border-radius:11px;
-  cursor:pointer;
-}
-
-.danger{
-  border-color:rgba(244,63,94,.25);
-  color:#fb7185;
-}
-
-.candidate-list{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-
-.candidate{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  padding:14px;
-  border-radius:17px;
-  background:#0c1123;
-  border:1px solid rgba(255,255,255,.06);
-}
-
-.candidate-img{
-  width:62px;
-  height:62px;
-  flex:none;
-  border-radius:15px;
-  overflow:hidden;
-  background:#1b223c;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:25px;
-}
-
-.candidate-img img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.candidate-info{
-  flex:1;
-  min-width:0;
-}
-
-.candidate-info h3{
-  font-size:16px;
-  margin-bottom:5px;
-}
-
-.candidate-info p{
-  color:#77829c;
-  font-size:12px;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-}
-
-.vote-count{
-  margin-top:7px;
-  color:#22d3ee;
+.badge{
+  display:inline-flex;
+  padding:6px 10px;
+  border-radius:999px;
   font-size:13px;
   font-weight:bold;
+  background:#eef1f5
 }
 
-.candidate-actions{
-  display:flex;
-  flex-direction:column;
-  gap:7px;
+.badge.new{background:#fff3bf}
+.badge.processing{background:#dbeafe}
+.badge.out{background:#ffedd5}
+.badge.delivered{background:#dcfce7}
+.badge.cancelled{background:#fee2e2}
+
+.product-list{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px
 }
 
-.image-input{
+.product-card{
+  border:1px solid #e8ebf0;
+  border-radius:16px;
+  overflow:hidden
+}
+
+.product-card img{
   width:100%;
-  padding:10px;
-  border-radius:12px;
-  background:#0c1123;
-  border:1px solid rgba(255,255,255,.1);
-  color:#aab2c8;
+  height:170px;
+  object-fit:cover;
+  background:#eee
+}
+
+.product-card-body{
+  padding:15px
+}
+
+.actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:12px
 }
 
 .empty{
   padding:40px;
   text-align:center;
-  color:#7f8aa3;
+  color:#7b8494
 }
 
-.toast{
-  position:fixed;
-  bottom:25px;
-  left:50%;
-  transform:translateX(-50%);
-  background:#151c35;
-  border:1px solid rgba(255,255,255,.1);
-  padding:13px 20px;
-  border-radius:14px;
-  z-index:100;
-  display:none;
+.notice{
+  padding:14px;
+  border-radius:12px;
+  background:#fff8db;
+  border:1px solid #f2df8b;
+  margin-bottom:15px;
+  line-height:1.7
 }
 
-.heartOverlay{
-  display:none;
-  position:fixed;
-  inset:0;
-  z-index:200;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  background:rgba(0,0,0,.72);
-  backdrop-filter:blur(8px);
-}
-
-.heartPanel{
-  width:min(450px,100%);
-  background:#11172c;
-  border:1px solid rgba(244,114,182,.2);
-  border-radius:24px;
-  padding:25px;
-  box-shadow:0 25px 80px rgba(0,0,0,.5);
-}
-
-.heartHead{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:22px;
-}
-
-.heartHead h2{
-  color:#fff;
-}
-
-.closeHeart{
-  width:35px;
-  height:35px;
-  border:0;
-  border-radius:10px;
-  background:#202840;
-  color:#fff;
-  cursor:pointer;
-  font-size:18px;
-}
-
-.heartDescription{
-  color:#8d96ad;
-  font-size:12px;
-  line-height:1.8;
-  margin-bottom:20px;
-}
-
-@media(max-width:850px){
-  .grid{
-    grid-template-columns:1fr;
-  }
-
+@media(max-width:900px){
   .stats{
-    grid-template-columns:1fr;
+    grid-template-columns:repeat(2,1fr)
+  }
+  .product-list{
+    grid-template-columns:repeat(2,1fr)
   }
 }
 
-@media(max-width:550px){
-  .topbarInner{
-    min-height:65px;
+@media(max-width:600px){
+  .container{
+    padding:15px
   }
-
-  .logo{
-    font-size:14px;
+  .stats{
+    grid-template-columns:1fr 1fr
   }
-
-  .logoIcon,
-  .heartBtn{
-    width:40px;
-    height:40px;
+  .grid{
+    grid-template-columns:1fr
   }
-
-  .logout{
-    padding:8px 10px;
-    font-size:12px;
+  .product-list{
+    grid-template-columns:1fr
   }
-
-  .candidate{
+  .header-inner{
     align-items:flex-start;
-  }
-
-  .candidate-actions{
-    flex-direction:column;
+    flex-direction:column
   }
 }
 </style>
@@ -489,828 +317,1333 @@ textarea{
 <body>
 
 <!-- LOGIN -->
-<section id="loginScreen" class="login">
+<section id="loginPage" class="login">
+
   <div class="login-box">
 
-    <div class="login-logo">⚿</div>
+    <div class="logo">NEXO STORE</div>
 
-    <h1>لوحة المرشد</h1>
-    <p>تسجيل الدخول إلى لوحة التحكم</p>
-
-    <div class="field">
-      <label>كلمة المرور</label>
-      <input
-        id="password"
-        type="password"
-        placeholder="أدخل كلمة المرور"
-        onkeydown="if(event.key==='Enter')login()"
-      >
-    </div>
-
-    <button class="primary" onclick="login()">دخول</button>
-
-    <div id="loginError" class="error"></div>
-
-  </div>
-</section>
-
-<!-- DASHBOARD -->
-<section id="dashboard" class="dashboard">
-
-  <header class="topbar">
-    <div class="topbarInner">
-
-      <div class="adminBrand">
-
-        <div class="logo">
-          <div class="logoIcon">⚿</div>
-          <span>لوحة المرشد</span>
-        </div>
-
-        <!-- القلب في نفس مكان رمز لوحة المرشد -->
-        <button
-          class="heartBtn"
-          onclick="openHeart()"
-          title="زيادة التصويتات"
-          aria-label="زيادة التصويتات"
-        >
-          ♥
-        </button>
-
-      </div>
-
-      <button class="logout" onclick="logout()">تسجيل الخروج</button>
-
-    </div>
-  </header>
-
-  <main class="container">
-
-    <div class="pageTitle">
-      <h1>لوحة التحكم</h1>
-      <p>إدارة المرشحين والتصويتات وإعدادات التصويت.</p>
-    </div>
-
-    <div class="stats">
-
-      <div class="stat">
-        <span>عدد المرشحين</span>
-        <strong id="statCandidates">0</strong>
-      </div>
-
-      <div class="stat">
-        <span>إجمالي التصويتات</span>
-        <strong id="statVotes">0</strong>
-      </div>
-
-      <div class="stat">
-        <span>حالة التصويت</span>
-        <strong id="statStatus">مغلق</strong>
-      </div>
-
-    </div>
-
-    <div class="grid">
-
-      <!-- SETTINGS + ADD -->
-      <div>
-
-        <div class="panel" style="margin-bottom:20px">
-
-          <h2>إعدادات التصويت</h2>
-
-          <div class="switchRow">
-            <span>فتح التصويت</span>
-
-            <button
-              id="voteSwitch"
-              class="switch"
-              onclick="toggleVoting()"
-            >
-              <span></span>
-            </button>
-          </div>
-
-          <div class="field">
-            <label>وقت البداية</label>
-            <input id="startTime" type="datetime-local">
-          </div>
-
-          <div class="field">
-            <label>وقت النهاية</label>
-            <input id="endTime" type="datetime-local">
-          </div>
-
-          <button class="primary" onclick="saveSettings()">
-            حفظ الإعدادات
-          </button>
-
-        </div>
-
-        <div class="panel">
-
-          <h2>إضافة شخص</h2>
-
-          <div class="field">
-            <label>اسم الشخص</label>
-            <input id="candidateName" type="text" placeholder="اسم الشخص">
-          </div>
-
-          <div class="field">
-            <label>الوصف</label>
-            <textarea
-              id="candidateDescription"
-              placeholder="اكتب وصفًا مختصرًا"
-            ></textarea>
-          </div>
-
-          <div class="field">
-            <label>صورة الشخص</label>
-            <input
-              id="candidateImage"
-              class="image-input"
-              type="file"
-              accept="image/*"
-            >
-          </div>
-
-          <button class="primary" onclick="addCandidate()">
-            إضافة الشخص
-          </button>
-
-        </div>
-
-      </div>
-
-      <!-- CANDIDATES -->
-      <div class="panel">
-
-        <h2>الأشخاص والتصويتات</h2>
-
-        <div id="candidateList" class="candidate-list"></div>
-
-        <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap">
-
-          <button class="small-btn danger" onclick="resetAllVotes()">
-            تصفير جميع التصويتات
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </main>
-
-</section>
-
-<!-- HEART / EXTRA VOTES -->
-<div
-  id="heartOverlay"
-  class="heartOverlay"
-  onclick="if(event.target===this)closeHeart()"
->
-
-  <div class="heartPanel">
-
-    <div class="heartHead">
-
-      <h2>♥ زيادة التصويتات</h2>
-
-      <button
-        class="closeHeart"
-        onclick="closeHeart()"
-        aria-label="إغلاق"
-      >
-        ×
-      </button>
-
-    </div>
-
-    <p class="heartDescription">
-      أدخل اسم الشخص وعدد التصويتات التي تريد إضافتها فقط.
+    <p style="text-align:center" class="muted">
+      لوحة التحكم
     </p>
 
-    <div class="field">
-      <label>اسم الشخص</label>
-      <input
-        id="heartName"
-        type="text"
-        placeholder="اكتب اسم الشخص"
-      >
+    <label>
+      اسم المستخدم
+      <input id="loginUser" type="text" placeholder="admin">
+    </label>
+
+    <label>
+      كلمة المرور
+      <input id="loginPass" type="password" placeholder="123456">
+    </label>
+
+    <button class="btn" style="width:100%" onclick="login()">
+      دخول لوحة التحكم
+    </button>
+
+    <p id="loginError"
+       style="color:#dc2626;text-align:center;margin-top:15px">
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- ADMIN -->
+<div id="adminPage" class="hidden">
+
+<header>
+  <div class="header-inner">
+
+    <div class="header-logo">
+      NEXO STORE
     </div>
 
-    <div class="field">
-      <label>عدد التصويتات</label>
-      <input
-        id="heartVotes"
-        type="number"
-        min="1"
-        step="1"
-        placeholder="مثال: 10"
-      >
+    <div class="header-actions">
+      <button class="btn light" onclick="showStore()">
+        فتح المتجر
+      </button>
+
+      <button class="btn danger" onclick="logout()">
+        تسجيل خروج
+      </button>
     </div>
 
-    <button class="primary" onclick="addExtraVotes()">
-      إضافة التصويتات
+  </div>
+</header>
+
+
+<main class="container">
+
+  <!-- STATS -->
+  <section class="stats">
+
+    <div class="stat">
+      <div class="stat-title">الطلبات</div>
+      <div class="stat-number" id="statOrders">0</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-title">المبيعات</div>
+      <div class="stat-number" id="statSales">0 ر.س</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-title">المنتجات</div>
+      <div class="stat-number" id="statProducts">0</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-title">نفد المخزون</div>
+      <div class="stat-number" id="statOut">0</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-title">قيد التجهيز</div>
+      <div class="stat-number" id="statProcessing">0</div>
+    </div>
+
+  </section>
+
+
+  <!-- TABS -->
+  <div class="tabs">
+
+    <button class="tab active"
+            onclick="openTab('dashboard',this)">
+      الرئيسية
+    </button>
+
+    <button class="tab"
+            onclick="openTab('products',this)">
+      المنتجات
+    </button>
+
+    <button class="tab"
+            onclick="openTab('orders',this)">
+      الطلبات
+    </button>
+
+    <button class="tab"
+            onclick="openTab('settings',this)">
+      إعدادات المتجر
     </button>
 
   </div>
 
+
+  <!-- DASHBOARD -->
+  <section id="dashboard" class="tab-content">
+
+    <div class="panel">
+
+      <div class="panel-head">
+        <h2>آخر الطلبات</h2>
+      </div>
+
+      <div id="latestOrders"></div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PRODUCTS -->
+  <section id="products"
+           class="tab-content hidden">
+
+    <div class="panel">
+
+      <div class="panel-head">
+
+        <h2>المنتجات</h2>
+
+        <button class="btn"
+                onclick="openProductForm()">
+          + إضافة منتج
+        </button>
+
+      </div>
+
+      <div id="productForm"
+           class="form-section hidden">
+
+        <h3 id="productFormTitle">
+          إضافة منتج
+        </h3>
+
+        <input type="hidden" id="productId">
+
+        <div class="grid">
+
+          <label>
+            اسم المنتج
+            <input id="pName" type="text">
+          </label>
+
+          <label>
+            السعر
+            <input id="pPrice"
+                   type="number"
+                   min="0"
+                   step="0.01">
+          </label>
+
+          <label>
+            نوع المنتج
+            <select id="pType">
+              <option value="digital">رقمي</option>
+              <option value="physical">مادي</option>
+            </select>
+          </label>
+
+          <label>
+            الكمية
+            <input id="pStock"
+                   type="number"
+                   min="0"
+                   value="0">
+          </label>
+
+          <label>
+            رابط الصورة
+            <input id="pImage"
+                   type="text"
+                   placeholder="https://...">
+          </label>
+
+          <label>
+            رابط المنتج الرقمي
+            <input id="pDigitalLink"
+                   type="text"
+                   placeholder="https://...">
+          </label>
+
+        </div>
+
+        <label>
+          وصف المنتج
+          <textarea id="pDescription"></textarea>
+        </label>
+
+        <div class="actions">
+
+          <button class="btn success"
+                  onclick="saveProduct()">
+            حفظ المنتج
+          </button>
+
+          <button class="btn light"
+                  onclick="closeProductForm()">
+            إلغاء
+          </button>
+
+        </div>
+
+      </div>
+
+      <div id="productsList"
+           class="product-list">
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ORDERS -->
+  <section id="orders"
+           class="tab-content hidden">
+
+    <div class="panel">
+
+      <div class="panel-head">
+        <h2>إدارة الطلبات</h2>
+
+        <button class="btn light"
+                onclick="renderOrders()">
+          تحديث
+        </button>
+      </div>
+
+      <div id="ordersList"></div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SETTINGS -->
+  <section id="settings"
+           class="tab-content hidden">
+
+    <div class="panel">
+
+      <div class="panel-head">
+        <h2>إعدادات المتجر</h2>
+      </div>
+
+      <div class="notice">
+        هذه الإعدادات يتم حفظها في هذا المتصفح.
+        الدفع والبريد الإلكتروني الحقيقيان يحتاجان
+        إلى خدمة خارجية + Backend آمن في النسخة الإنتاجية.
+      </div>
+
+
+      <div class="form-section">
+
+        <h3>معلومات المتجر</h3>
+
+        <label>
+          اسم المتجر
+          <input id="sStoreName"
+                 value="NEXO STORE">
+        </label>
+
+        <label>
+          وصف المتجر
+          <textarea id="sDescription"></textarea>
+        </label>
+
+      </div>
+
+
+      <div class="form-section">
+
+        <h3>التوصيل والاستلام</h3>
+
+        <label>
+          رسوم التوصيل
+          <input id="sDeliveryFee"
+                 type="number"
+                 min="0"
+                 step="0.01">
+        </label>
+
+        <label>
+          رقم الاستلام
+          <input id="sPickupPhone"
+                 type="text"
+                 placeholder="05xxxxxxxx">
+        </label>
+
+        <label>
+          موقع الاستلام
+          <input id="sPickupSite"
+                 type="text"
+                 placeholder="موقع الاستلام">
+        </label>
+
+      </div>
+
+
+      <div class="form-section">
+
+        <h3>خصومات الكميات</h3>
+
+        <p class="muted">
+          اكتب بالشكل:
+          5:5, 10:10, 20:15
+        </p>
+
+        <label>
+          مستويات الخصم
+          <input id="sWholesale"
+                 type="text"
+                 placeholder="5:5, 10:10, 20:15">
+        </label>
+
+      </div>
+
+
+      <div class="form-section">
+
+        <h3>حساب المدير</h3>
+
+        <label>
+          اسم المستخدم
+          <input id="sAdminUser"
+                 type="text">
+        </label>
+
+        <label>
+          كلمة المرور
+          <input id="sAdminPass"
+                 type="text">
+        </label>
+
+      </div>
+
+
+      <div class="form-section">
+
+        <h3>إعدادات الدفع</h3>
+
+        <p class="muted">
+          مفتاح النشر الخاص بمزود الدفع.
+          لا تضع المفتاح السري داخل HTML.
+        </p>
+
+        <label>
+          Moyasar Publishable Key
+          <input id="sMoyasarKey"
+                 type="text"
+                 placeholder="pk_...">
+        </label>
+
+      </div>
+
+
+      <div class="form-section">
+
+        <h3>إعدادات البريد الإلكتروني</h3>
+
+        <label>
+          EmailJS Public Key
+          <input id="sEmailPublic"
+                 type="text">
+        </label>
+
+        <label>
+          EmailJS Service ID
+          <input id="sEmailService"
+                 type="text">
+        </label>
+
+        <label>
+          EmailJS Template ID
+          <input id="sEmailTemplate"
+                 type="text">
+        </label>
+
+      </div>
+
+
+      <button class="btn success"
+              onclick="saveSettings()">
+        حفظ جميع الإعدادات
+      </button>
+
+    </div>
+
+  </section>
+
+</main>
+
 </div>
 
-<div id="toast" class="toast"></div>
 
 <script>
-const PASSWORD="MNMN0505";
 
-const CANDIDATES_KEY="candidates";
-const VOTES_KEY="votes";
-const SETTINGS_KEY="voteSettings";
+const K = {
+  products:"nexo_products",
+  orders:"nexo_orders",
+  settings:"nexo_settings"
+};
 
-let loggedIn=false;
 
-function login(){
+/* =========================
+   DEFAULT DATA
+========================= */
 
-  const password=document.getElementById("password").value;
-  const error=document.getElementById("loginError");
+const defaultSettings = {
+  storeName:"NEXO STORE",
+  description:"متجر NEXO STORE",
+  deliveryFee:15,
+  pickupPhone:"",
+  pickupSite:"",
+  adminUser:"admin",
+  adminPass:"123456",
+  wholesaleTiers:[
+    {min:5,percent:5},
+    {min:10,percent:10},
+    {min:20,percent:15}
+  ],
+  moyasarKey:"",
+  emailPublic:"",
+  emailService:"",
+  emailTemplate:""
+};
 
-  if(password===PASSWORD){
 
-    loggedIn=true;
+/* =========================
+   STORAGE
+========================= */
 
-    document.getElementById("loginScreen").style.display="none";
-    document.getElementById("dashboard").style.display="block";
-
-    error.textContent="";
-    loadSettings();
-    renderCandidates();
-    updateStats();
-
-  }else{
-
-    error.textContent="كلمة المرور غير صحيحة.";
-
-  }
+function getProducts(){
+  return JSON.parse(localStorage.getItem(K.products)||"[]");
 }
 
-function logout(){
-
-  loggedIn=false;
-
-  document.getElementById("dashboard").style.display="none";
-  document.getElementById("loginScreen").style.display="flex";
-
-  document.getElementById("password").value="";
+function saveProducts(data){
+  localStorage.setItem(K.products,JSON.stringify(data));
 }
 
-function getCandidates(){
-
-  try{
-    return JSON.parse(localStorage.getItem(CANDIDATES_KEY))||[];
-  }catch(e){
-    return [];
-  }
-
+function getOrders(){
+  return JSON.parse(localStorage.getItem(K.orders)||"[]");
 }
 
-function saveCandidates(candidates){
-
-  localStorage.setItem(
-    CANDIDATES_KEY,
-    JSON.stringify(candidates)
-  );
-
-}
-
-function getVotes(){
-
-  try{
-    return JSON.parse(localStorage.getItem(VOTES_KEY))||{};
-  }catch(e){
-    return {};
-  }
-
-}
-
-function saveVotes(votes){
-
-  localStorage.setItem(
-    VOTES_KEY,
-    JSON.stringify(votes)
-  );
-
+function saveOrders(data){
+  localStorage.setItem(K.orders,JSON.stringify(data));
 }
 
 function getSettings(){
 
-  try{
+  let data =
+    JSON.parse(localStorage.getItem(K.settings)||"null");
 
-    return JSON.parse(
-      localStorage.getItem(SETTINGS_KEY)
-    )||{
-      open:true,
-      start:"",
-      end:""
-    };
+  if(!data){
 
-  }catch(e){
+    localStorage.setItem(
+      K.settings,
+      JSON.stringify(defaultSettings)
+    );
 
-    return{
-      open:true,
-      start:"",
-      end:""
-    };
-
+    return {...defaultSettings};
   }
 
+  return {
+    ...defaultSettings,
+    ...data
+  };
 }
 
-function saveSettings(){
-
-  const settings={
-    open:document.getElementById("voteSwitch").classList.contains("active"),
-    start:document.getElementById("startTime").value,
-    end:document.getElementById("endTime").value
-  };
-
+function saveSettingsData(data){
   localStorage.setItem(
-    SETTINGS_KEY,
-    JSON.stringify(settings)
+    K.settings,
+    JSON.stringify(data)
   );
-
-  updateStats();
-  showToast("تم حفظ إعدادات التصويت.");
-
 }
 
-function loadSettings(){
 
-  const settings=getSettings();
+/* =========================
+   LOGIN
+========================= */
 
-  document
-    .getElementById("voteSwitch")
-    .classList.toggle("active",settings.open!==false);
+function login(){
 
-  document.getElementById("startTime").value=settings.start||"";
-  document.getElementById("endTime").value=settings.end||"";
+  const user =
+    document.getElementById("loginUser").value.trim();
 
-}
+  const pass =
+    document.getElementById("loginPass").value;
 
-function toggleVoting(){
+  const settings = getSettings();
 
-  const button=document.getElementById("voteSwitch");
+  if(
+    user === settings.adminUser &&
+    pass === settings.adminPass
+  ){
 
-  button.classList.toggle("active");
+    sessionStorage.setItem("nexo_admin","1");
 
-}
+    document.getElementById("loginPage")
+      .classList.add("hidden");
 
-function addCandidate(){
+    document.getElementById("adminPage")
+      .classList.remove("hidden");
 
-  const name=document
-    .getElementById("candidateName")
-    .value
-    .trim();
-
-  const description=document
-    .getElementById("candidateDescription")
-    .value
-    .trim();
-
-  const imageInput=document.getElementById("candidateImage");
-
-  if(!name){
-
-    showToast("اكتب اسم الشخص أولًا.");
-    return;
-
-  }
-
-  const candidates=getCandidates();
-
-  const candidate={
-    id:Date.now().toString(),
-    name:name,
-    description:description,
-    image:""
-  };
-
-  if(imageInput.files.length){
-
-    const file=imageInput.files[0];
-
-    if(!file.type.startsWith("image/")){
-
-      showToast("الملف المختار ليس صورة.");
-      return;
-
-    }
-
-    resizeImage(file,800,800,0.82)
-      .then(imageData=>{
-
-        candidate.image=imageData;
-
-        candidates.push(candidate);
-        saveCandidates(candidates);
-
-        clearCandidateForm();
-
-        renderCandidates();
-        updateStats();
-
-        showToast("تمت إضافة الشخص بنجاح.");
-
-      })
-      .catch(()=>{
-
-        showToast("حدث خطأ أثناء معالجة الصورة.");
-
-      });
+    initAdmin();
 
   }else{
 
-    candidates.push(candidate);
-
-    saveCandidates(candidates);
-
-    clearCandidateForm();
-
-    renderCandidates();
-    updateStats();
-
-    showToast("تمت إضافة الشخص بنجاح.");
+    document.getElementById("loginError")
+      .textContent =
+      "اسم المستخدم أو كلمة المرور غير صحيحة.";
 
   }
+}
+
+
+function logout(){
+
+  sessionStorage.removeItem("nexo_admin");
+
+  location.reload();
 
 }
 
-function resizeImage(file,maxWidth,maxHeight,quality){
 
-  return new Promise((resolve,reject)=>{
+function showStore(){
+  window.open("index.html","_blank");
+}
 
-    const reader=new FileReader();
 
-    reader.onload=event=>{
+/* =========================
+   INIT
+========================= */
 
-      const img=new Image();
+function initAdmin(){
 
-      img.onload=()=>{
-
-        let width=img.width;
-        let height=img.height;
-
-        if(width>maxWidth){
-
-          height*=maxWidth/width;
-          width=maxWidth;
-
-        }
-
-        if(height>maxHeight){
-
-          width*=maxHeight/height;
-          height=maxHeight;
-
-        }
-
-        const canvas=document.createElement("canvas");
-
-        canvas.width=Math.round(width);
-        canvas.height=Math.round(height);
-
-        const ctx=canvas.getContext("2d");
-
-        ctx.drawImage(
-          img,
-          0,
-          0,
-          canvas.width,
-          canvas.height
-        );
-
-        resolve(
-          canvas.toDataURL(
-            "image/jpeg",
-            quality
-          )
-        );
-
-      };
-
-      img.onerror=reject;
-      img.src=event.target.result;
-
-    };
-
-    reader.onerror=reject;
-
-    reader.readAsDataURL(file);
-
-  });
+  renderStats();
+  renderProducts();
+  renderOrders();
+  renderLatestOrders();
+  loadSettings();
 
 }
 
-function clearCandidateForm(){
 
-  document.getElementById("candidateName").value="";
-  document.getElementById("candidateDescription").value="";
-  document.getElementById("candidateImage").value="";
+if(sessionStorage.getItem("nexo_admin")==="1"){
+
+  document.getElementById("loginPage")
+    .classList.add("hidden");
+
+  document.getElementById("adminPage")
+    .classList.remove("hidden");
+
+  initAdmin();
 
 }
 
-function renderCandidates(){
 
-  const list=document.getElementById("candidateList");
+/* =========================
+   TABS
+========================= */
 
-  const candidates=getCandidates();
-  const votes=getVotes();
+function openTab(id,btn){
 
-  if(!candidates.length){
+  document
+    .querySelectorAll(".tab-content")
+    .forEach(el=>{
+      el.classList.add("hidden");
+    });
 
-    list.innerHTML=`
-      <div class="empty">
-        لا يوجد أشخاص مضافون حاليًا.
-      </div>
-    `;
+  document
+    .getElementById(id)
+    .classList.remove("hidden");
+
+  document
+    .querySelectorAll(".tab")
+    .forEach(el=>{
+      el.classList.remove("active");
+    });
+
+  btn.classList.add("active");
+
+}
+
+
+/* =========================
+   STATS
+========================= */
+
+function renderStats(){
+
+  const products = getProducts();
+  const orders = getOrders();
+
+  const sales =
+    orders
+      .filter(o=>o.status!=="cancelled")
+      .reduce((sum,o)=>sum+Number(o.total||0),0);
+
+  const out =
+    products.filter(p=>
+      p.type==="physical" &&
+      Number(p.stock)<=0
+    ).length;
+
+  const processing =
+    orders.filter(o=>
+      o.status==="processing"
+    ).length;
+
+  document.getElementById("statOrders")
+    .textContent=orders.length;
+
+  document.getElementById("statSales")
+    .textContent=sales.toFixed(2)+" ر.س";
+
+  document.getElementById("statProducts")
+    .textContent=products.length;
+
+  document.getElementById("statOut")
+    .textContent=out;
+
+  document.getElementById("statProcessing")
+    .textContent=processing;
+
+}
+
+
+/* =========================
+   PRODUCTS
+========================= */
+
+function renderProducts(){
+
+  const list =
+    document.getElementById("productsList");
+
+  const products=getProducts();
+
+  if(!products.length){
+
+    list.innerHTML=
+      `<div class="empty">
+        لا توجد منتجات حالياً.
+      </div>`;
 
     return;
-
   }
 
-  list.innerHTML=candidates.map(candidate=>{
+  list.innerHTML=products.map(p=>{
 
-    const voteCount=Number(votes[candidate.id]||0);
+    const stock =
+      p.type==="physical"
+      ? `المخزون: ${p.stock}`
+      : "منتج رقمي";
 
-    const image=candidate.image
-      ? `<img src="${candidate.image}" alt="">`
-      : `👤`;
+    return `
+      <div class="product-card">
 
-    return`
+        <img
+          src="${escapeHtml(p.image||"")}"
+          onerror="this.style.display='none'"
+        >
 
-      <div class="candidate">
+        <div class="product-card-body">
 
-        <div class="candidate-img">
-          ${image}
-        </div>
+          <h3>${escapeHtml(p.name)}</h3>
 
-        <div class="candidate-info">
-
-          <h3>${escapeHTML(candidate.name)}</h3>
-
-          <p>
-            ${escapeHTML(
-              candidate.description||"بدون وصف"
-            )}
+          <p class="muted">
+            ${escapeHtml(p.description||"")}
           </p>
 
-          <div class="vote-count">
-            ${voteCount} تصويت
+          <strong>
+            ${Number(p.price||0).toFixed(2)} ر.س
+          </strong>
+
+          <p>${stock}</p>
+
+          <div class="actions">
+
+            <button class="btn light"
+                    onclick="editProduct('${p.id}')">
+              تعديل
+            </button>
+
+            <button class="btn danger"
+                    onclick="deleteProduct('${p.id}')">
+              حذف
+            </button>
+
           </div>
 
         </div>
 
-        <div class="candidate-actions">
-
-          <button
-            class="small-btn"
-            onclick="resetCandidateVotes('${candidate.id}')"
-          >
-            تصفير
-          </button>
-
-          <button
-            class="small-btn danger"
-            onclick="deleteCandidate('${candidate.id}')"
-          >
-            حذف
-          </button>
-
-        </div>
-
       </div>
-
     `;
 
   }).join("");
 
 }
 
-function deleteCandidate(id){
 
-  const candidates=getCandidates();
+function openProductForm(){
 
-  const candidate=candidates.find(
-    c=>String(c.id)===String(id)
-  );
+  document.getElementById("productForm")
+    .classList.remove("hidden");
 
-  if(!candidate) return;
+  document.getElementById("productFormTitle")
+    .textContent="إضافة منتج";
 
-  if(!confirm(`هل تريد حذف ${candidate.name}؟`)) return;
-
-  const newCandidates=candidates.filter(
-    c=>String(c.id)!==String(id)
-  );
-
-  saveCandidates(newCandidates);
-
-  const votes=getVotes();
-
-  delete votes[id];
-
-  saveVotes(votes);
-
-  renderCandidates();
-  updateStats();
-
-  showToast("تم حذف الشخص.");
+  document.getElementById("productId").value="";
+  document.getElementById("pName").value="";
+  document.getElementById("pPrice").value="";
+  document.getElementById("pType").value="digital";
+  document.getElementById("pStock").value="0";
+  document.getElementById("pImage").value="";
+  document.getElementById("pDigitalLink").value="";
+  document.getElementById("pDescription").value="";
 
 }
 
-function resetCandidateVotes(id){
 
-  const candidates=getCandidates();
+function closeProductForm(){
 
-  const candidate=candidates.find(
-    c=>String(c.id)===String(id)
-  );
-
-  if(!candidate) return;
-
-  if(!confirm(`هل تريد تصفير تصويتات ${candidate.name}؟`)) return;
-
-  const votes=getVotes();
-
-  votes[id]=0;
-
-  saveVotes(votes);
-
-  renderCandidates();
-  updateStats();
-
-  showToast("تم تصفير التصويتات.");
+  document.getElementById("productForm")
+    .classList.add("hidden");
 
 }
 
-function resetAllVotes(){
 
-  if(!confirm("هل تريد تصفير جميع التصويتات؟")) return;
+function saveProduct(){
 
-  const candidates=getCandidates();
-  const votes={};
+  const products=getProducts();
 
-  candidates.forEach(candidate=>{
-    votes[candidate.id]=0;
-  });
+  const id =
+    document.getElementById("productId").value ||
+    "p_"+Date.now();
 
-  saveVotes(votes);
+  const product={
 
-  localStorage.removeItem("votedCandidate");
+    id,
 
-  renderCandidates();
-  updateStats();
+    name:
+      document.getElementById("pName").value.trim(),
 
-  showToast("تم تصفير جميع التصويتات.");
+    price:
+      Number(document.getElementById("pPrice").value||0),
+
+    type:
+      document.getElementById("pType").value,
+
+    stock:
+      Number(document.getElementById("pStock").value||0),
+
+    image:
+      document.getElementById("pImage").value.trim(),
+
+    digitalLink:
+      document.getElementById("pDigitalLink").value.trim(),
+
+    description:
+      document.getElementById("pDescription").value.trim()
+
+  };
+
+
+  if(!product.name){
+
+    alert("اكتب اسم المنتج.");
+
+    return;
+  }
+
+  if(product.price<0){
+
+    alert("السعر غير صحيح.");
+
+    return;
+  }
+
+
+  const index =
+    products.findIndex(p=>p.id===id);
+
+  if(index>=0)
+    products[index]=product;
+  else
+    products.push(product);
+
+
+  saveProducts(products);
+
+  closeProductForm();
+
+  renderProducts();
+
+  renderStats();
 
 }
 
-function updateStats(){
 
-  const candidates=getCandidates();
-  const votes=getVotes();
-  const settings=getSettings();
+function editProduct(id){
 
-  let total=0;
+  const p =
+    getProducts().find(x=>x.id===id);
 
-  candidates.forEach(candidate=>{
-    total+=Number(votes[candidate.id]||0);
-  });
+  if(!p)return;
 
-  document.getElementById("statCandidates").textContent=
-    candidates.length;
+  document.getElementById("productForm")
+    .classList.remove("hidden");
 
-  document.getElementById("statVotes").textContent=
-    total;
+  document.getElementById("productFormTitle")
+    .textContent="تعديل المنتج";
 
-  document.getElementById("statStatus").textContent=
-    settings.open!==false ? "مفتوح" : "مغلق";
-
-}
-
-function openHeart(){
-
-  document.getElementById("heartOverlay").style.display="flex";
-
-  setTimeout(()=>{
-    document.getElementById("heartName").focus();
-  },50);
+  document.getElementById("productId").value=p.id;
+  document.getElementById("pName").value=p.name||"";
+  document.getElementById("pPrice").value=p.price||0;
+  document.getElementById("pType").value=p.type||"digital";
+  document.getElementById("pStock").value=p.stock||0;
+  document.getElementById("pImage").value=p.image||"";
+  document.getElementById("pDigitalLink").value=p.digitalLink||"";
+  document.getElementById("pDescription").value=p.description||"";
 
 }
 
-function closeHeart(){
 
-  document.getElementById("heartOverlay").style.display="none";
+function deleteProduct(id){
+
+  if(!confirm("هل تريد حذف هذا المنتج؟"))return;
+
+  const products =
+    getProducts().filter(p=>p.id!==id);
+
+  saveProducts(products);
+
+  renderProducts();
+  renderStats();
 
 }
 
-function addExtraVotes(){
 
-  const name=document
-    .getElementById("heartName")
-    .value
-    .trim();
+/* =========================
+   ORDERS
+========================= */
 
-  const amount=Number(
-    document.getElementById("heartVotes").value
-  );
+const statusMap = {
 
-  if(!name){
+  new:["🟡","جديد","new"],
 
-    showToast("اكتب اسم الشخص.");
+  processing:["🔵","قيد التجهيز","processing"],
+
+  out:["🟠","خرج للتوصيل","out"],
+
+  delivered:["🟢","تم التسليم","delivered"],
+
+  cancelled:["🔴","ملغي","cancelled"]
+
+};
+
+
+function renderOrders(){
+
+  const box =
+    document.getElementById("ordersList");
+
+  const orders=getOrders();
+
+  if(!orders.length){
+
+    box.innerHTML=
+      `<div class="empty">
+        لا توجد طلبات حتى الآن.
+      </div>`;
+
+    return;
+  }
+
+
+  box.innerHTML =
+    [...orders]
+    .reverse()
+    .map(order=>{
+
+      const st =
+        statusMap[order.status] ||
+        statusMap.new;
+
+      const items =
+        (order.items||[])
+        .map(i=>
+          `${escapeHtml(i.name)} × ${i.qty}`
+        )
+        .join("، ");
+
+
+      return `
+        <div class="order-card">
+
+          <div class="order-top">
+
+            <div>
+
+              <strong>
+                ${escapeHtml(order.orderNumber||order.id)}
+              </strong>
+
+              <p class="muted">
+                ${formatDate(order.createdAt)}
+              </p>
+
+            </div>
+
+            <span class="badge ${st[2]}">
+              ${st[0]} ${st[1]}
+            </span>
+
+          </div>
+
+
+          <hr>
+
+
+          <div class="grid">
+
+            <div>
+              <strong>العميل</strong>
+              <p>${escapeHtml(order.customerName||"-")}</p>
+            </div>
+
+            <div>
+              <strong>الجوال</strong>
+              <p>${escapeHtml(order.phone||"-")}</p>
+            </div>
+
+            <div>
+              <strong>البريد</strong>
+              <p>${escapeHtml(order.email||"-")}</p>
+            </div>
+
+            <div>
+              <strong>طريقة الاستلام</strong>
+              <p>${escapeHtml(order.fulfillment||"-")}</p>
+            </div>
+
+            <div>
+              <strong>الدفع</strong>
+              <p>${escapeHtml(order.paymentMethod||"-")}</p>
+            </div>
+
+            <div>
+              <strong>الإجمالي</strong>
+              <p>
+                ${Number(order.total||0).toFixed(2)} ر.س
+              </p>
+            </div>
+
+          </div>
+
+
+          <p>
+            <strong>المنتجات:</strong>
+            ${items||"-"}
+          </p>
+
+
+          <div class="actions">
+
+            <select
+              onchange="changeOrderStatus('${order.id}',this.value)"
+            >
+
+              <option value="new"
+                ${order.status==="new"?"selected":""}>
+                🟡 جديد
+              </option>
+
+              <option value="processing"
+                ${order.status==="processing"?"selected":""}>
+                🔵 قيد التجهيز
+              </option>
+
+              <option value="out"
+                ${order.status==="out"?"selected":""}>
+                🟠 خرج للتوصيل
+              </option>
+
+              <option value="delivered"
+                ${order.status==="delivered"?"selected":""}>
+                🟢 تم التسليم
+              </option>
+
+              <option value="cancelled"
+                ${order.status==="cancelled"?"selected":""}>
+                🔴 ملغي
+              </option>
+
+            </select>
+
+
+            <button
+              class="btn danger"
+              onclick="deleteOrder('${order.id}')">
+              حذف الطلب
+            </button>
+
+          </div>
+
+        </div>
+      `;
+
+    }).join("");
+
+}
+
+
+function changeOrderStatus(id,status){
+
+  const orders=getOrders();
+
+  const order =
+    orders.find(o=>o.id===id);
+
+  if(!order)return;
+
+  order.status=status;
+
+  order.updatedAt =
+    new Date().toISOString();
+
+  saveOrders(orders);
+
+  renderOrders();
+  renderLatestOrders();
+  renderStats();
+
+}
+
+
+function deleteOrder(id){
+
+  if(!confirm("هل تريد حذف الطلب نهائياً؟"))
     return;
 
-  }
+  const orders =
+    getOrders().filter(o=>o.id!==id);
 
-  if(!Number.isInteger(amount)||amount<=0){
+  saveOrders(orders);
 
-    showToast("اكتب عدد تصويتات صحيح.");
+  renderOrders();
+  renderLatestOrders();
+  renderStats();
+
+}
+
+
+/* =========================
+   LATEST ORDERS
+========================= */
+
+function renderLatestOrders(){
+
+  const box =
+    document.getElementById("latestOrders");
+
+  const orders =
+    [...getOrders()]
+    .reverse()
+    .slice(0,5);
+
+  if(!orders.length){
+
+    box.innerHTML=
+      `<div class="empty">
+        لا توجد طلبات حتى الآن.
+      </div>`;
+
     return;
-
   }
 
-  const candidates=getCandidates();
 
-  const candidate=candidates.find(c=>
-    String(c.name)
-      .trim()
-      .toLowerCase()===name.toLowerCase()
-  );
+  box.innerHTML =
+    orders.map(o=>{
 
-  if(!candidate){
+      const st =
+        statusMap[o.status] ||
+        statusMap.new;
 
-    showToast("لم يتم العثور على هذا الشخص.");
-    return;
+      return `
+        <div class="order-card">
 
-  }
+          <div class="order-top">
 
-  const votes=getVotes();
+            <div>
 
-  votes[candidate.id]=
-    Number(votes[candidate.id]||0)+amount;
+              <strong>
+                ${escapeHtml(o.orderNumber||o.id)}
+              </strong>
 
-  saveVotes(votes);
+              <p>
+                ${escapeHtml(o.customerName||"-")}
+              </p>
 
-  document.getElementById("heartName").value="";
-  document.getElementById("heartVotes").value="";
+            </div>
 
-  closeHeart();
+            <div>
 
-  renderCandidates();
-  updateStats();
+              <span class="badge ${st[2]}">
+                ${st[0]} ${st[1]}
+              </span>
 
-  showToast(
-    `تمت إضافة ${amount} تصويت للشخص ${candidate.name}.`
-  );
+              <p>
+                <strong>
+                  ${Number(o.total||0).toFixed(2)} ر.س
+                </strong>
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+      `;
+
+    }).join("");
 
 }
 
-function showToast(message){
 
-  const toast=document.getElementById("toast");
+/* =========================
+   SETTINGS
+========================= */
 
-  toast.textContent=message;
-  toast.style.display="block";
+function loadSettings(){
 
-  clearTimeout(window.toastTimer);
+  const s=getSettings();
 
-  window.toastTimer=setTimeout(()=>{
-    toast.style.display="none";
-  },3000);
+  document.getElementById("sStoreName").value =
+    s.storeName||"NEXO STORE";
+
+  document.getElementById("sDescription").value =
+    s.description||"";
+
+  document.getElementById("sDeliveryFee").value =
+    s.deliveryFee||0;
+
+  document.getElementById("sPickupPhone").value =
+    s.pickupPhone||"";
+
+  document.getElementById("sPickupSite").value =
+    s.pickupSite||"";
+
+  document.getElementById("sAdminUser").value =
+    s.adminUser||"admin";
+
+  document.getElementById("sAdminPass").value =
+    s.adminPass||"123456";
+
+  document.getElementById("sMoyasarKey").value =
+    s.moyasarKey||"";
+
+  document.getElementById("sEmailPublic").value =
+    s.emailPublic||"";
+
+  document.getElementById("sEmailService").value =
+    s.emailService||"";
+
+  document.getElementById("sEmailTemplate").value =
+    s.emailTemplate||"";
+
+
+  const tiers =
+    (s.wholesaleTiers||[])
+    .map(x=>`${x.min}:${x.percent}`)
+    .join(", ");
+
+  document.getElementById("sWholesale").value =
+    tiers;
 
 }
 
-function escapeHTML(value){
 
-  return String(value)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+function saveSettings(){
+
+  const old=getSettings();
+
+  const wholesale =
+    document.getElementById("sWholesale")
+      .value
+      .split(",")
+      .map(x=>x.trim())
+      .filter(Boolean)
+      .map(x=>{
+
+        const parts=x.split(":");
+
+        return {
+          min:Number(parts[0]),
+          percent:Number(parts[1])
+        };
+
+      })
+      .filter(x=>
+        x.min>0 &&
+        x.percent>=0
+      )
+      .sort((a,b)=>a.min-b.min);
+
+
+  const data={
+
+    ...old,
+
+    storeName:
+      document.getElementById("sStoreName")
+        .value.trim(),
+
+    description:
+      document.getElementById("sDescription")
+        .value.trim(),
+
+    deliveryFee:
+      Number(
+        document.getElementById("sDeliveryFee")
+          .value||0
+      ),
+
+    pickupPhone:
+      document.getElementById("sPickupPhone")
+        .value.trim(),
+
+    pickupSite:
+      document.getElementById("sPickupSite")
+        .value.trim(),
+
+    adminUser:
+      document.getElementById("sAdminUser")
+        .value.trim(),
+
+    adminPass:
+      document.getElementById("sAdminPass")
+        .value,
+
+    wholesaleTiers:
+      wholesale,
+
+    moyasarKey:
+      document.getElementById("sMoyasarKey")
+        .value.trim(),
+
+    emailPublic:
+      document.getElementById("sEmailPublic")
+        .value.trim(),
+
+    emailService:
+      document.getElementById("sEmailService")
+        .value.trim(),
+
+    emailTemplate:
+      document.getElementById("sEmailTemplate")
+        .value.trim()
+
+  };
+
+
+  saveSettingsData(data);
+
+  alert("تم حفظ الإعدادات بنجاح.");
+
+  renderStats();
 
 }
 
-window.addEventListener("storage",()=>{
 
-  if(loggedIn){
+/* =========================
+   HELPERS
+========================= */
 
-    renderCandidates();
-    updateStats();
+function formatDate(date){
+
+  if(!date)return "-";
+
+  try{
+
+    return new Date(date)
+      .toLocaleString("ar-SA");
+
+  }catch{
+
+    return date;
 
   }
 
-});
+}
+
+
+function escapeHtml(value){
+
+  return String(value??"")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
 
 </script>
 
